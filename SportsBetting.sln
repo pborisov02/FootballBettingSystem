@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Web", "SportsBetting.Web\SportsBettingSystem.Web.csproj", "{E1477F59-A641-4614-9E12-C4BB2FDA344F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Common", "SportsBettingSystem.Common\SportsBettingSystem.Common.csproj", "{151BB718-A5B8-4CE5-9097-D48F8FE0D601}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A7BE01A4-8CDF-4235-BB29-60EC7B1D6648}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{CA9C070B-C302-407B-A5CB-F65BA973C6DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Data", "SportsBettingSystem.Data\SportsBettingSystem.Data.csproj", "{9A327A49-EC44-4156-A86B-36E386B9AA9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Data.Models", "SportsBettingSystem.Data.Models\SportsBettingSystem.Data.Models.csproj", "{F8B6BD52-EE2D-47A1-9E82-F7204250DB31}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Web.ViewModels", "SportsBettingSystem.Web.ViewModel\SportsBettingSystem.Web.ViewModels.csproj", "{E860C67A-3B2D-4875-B3E6-B184A5E50B4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1477F59-A641-4614-9E12-C4BB2FDA344F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1477F59-A641-4614-9E12-C4BB2FDA344F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1477F59-A641-4614-9E12-C4BB2FDA344F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1477F59-A641-4614-9E12-C4BB2FDA344F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{151BB718-A5B8-4CE5-9097-D48F8FE0D601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{151BB718-A5B8-4CE5-9097-D48F8FE0D601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{151BB718-A5B8-4CE5-9097-D48F8FE0D601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{151BB718-A5B8-4CE5-9097-D48F8FE0D601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A327A49-EC44-4156-A86B-36E386B9AA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A327A49-EC44-4156-A86B-36E386B9AA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A327A49-EC44-4156-A86B-36E386B9AA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A327A49-EC44-4156-A86B-36E386B9AA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B6BD52-EE2D-47A1-9E82-F7204250DB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B6BD52-EE2D-47A1-9E82-F7204250DB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B6BD52-EE2D-47A1-9E82-F7204250DB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B6BD52-EE2D-47A1-9E82-F7204250DB31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E860C67A-3B2D-4875-B3E6-B184A5E50B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E860C67A-3B2D-4875-B3E6-B184A5E50B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E860C67A-3B2D-4875-B3E6-B184A5E50B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E860C67A-3B2D-4875-B3E6-B184A5E50B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1477F59-A641-4614-9E12-C4BB2FDA344F} = {A7BE01A4-8CDF-4235-BB29-60EC7B1D6648}
+		{9A327A49-EC44-4156-A86B-36E386B9AA9B} = {CA9C070B-C302-407B-A5CB-F65BA973C6DA}
+		{F8B6BD52-EE2D-47A1-9E82-F7204250DB31} = {CA9C070B-C302-407B-A5CB-F65BA973C6DA}
+		{E860C67A-3B2D-4875-B3E6-B184A5E50B4B} = {A7BE01A4-8CDF-4235-BB29-60EC7B1D6648}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD9A894F-B038-4389-8903-9385C3C05E12}
+	EndGlobalSection
+EndGlobal
