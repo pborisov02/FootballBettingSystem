@@ -16,7 +16,7 @@
         public string LastName { get; set; } = null!;
 
         [Required]
-        Position Position { get; set; }
+        public Position Position { get; set; }
 
         [Required]
         public int KitNumber { get; set; }
@@ -30,8 +30,8 @@
         [Required]
         public int Appearance { get; set; }
 
-        public int ClubId { get; set; }
+        public int TeamId { get; set; }
 
-        public Team Club { get; set; }
+        public virtual Team? Team { get; set; }
     }
 }

@@ -1,10 +1,12 @@
 namespace SportsBetting.Web
 {
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
-    using SportsBettingSystem.Data;
 
-    public class Program
+	using SportsBettingSystem.Data;
+	using SportsBettingSystem.Data.Models;
+
+
+	public class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -12,18 +14,19 @@ namespace SportsBetting.Web
 
 			string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 			
-			builder.Services.AddDbContext<ApplicationDbContext>(options =>
-				options.UseSqlServer(connectionString));
+			builder.Services.AddDbContext<SportsBettingDbContext>(options =>
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("SportsBettingSystem.Web")));
 
 
-			builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+			builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 			{
 				options.SignIn.RequireConfirmedAccount = true;
 			})
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+				.AddEntityFrameworkStores<SportsBettingDbContext>();
 			builder.Services.AddControllersWithViews();
 
-			WebApplication app = builder.Build();
+
+            WebApplication app = builder.Build();
 
 			if (app.Environment.IsDevelopment())
 			{
