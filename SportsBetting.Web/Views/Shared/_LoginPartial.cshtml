@@ -6,9 +6,21 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+     <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+         <div class="dropdown-menu">
+            <a class ="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Info">Account Info</a>
+             <div class="dropdown-divider"></div>
+                <p>&nbsp Bank:</p>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Deposit">Deposit</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Withdraw">Withdraw</a>
+        </div>
+     </li>
+
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
+ 
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>

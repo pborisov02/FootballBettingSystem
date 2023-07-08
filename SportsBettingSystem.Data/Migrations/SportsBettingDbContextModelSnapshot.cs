@@ -313,9 +313,30 @@ namespace SportsBettingSystem.Web.Migrations
                         .HasMaxLength(2048)
                         .HasColumnType("nvarchar(2048)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Leagues");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Country = "Spain",
+                            LogoUrl = "https://content.sportslogos.net/leagues/thumbs/130.gif",
+                            Name = "La Liga"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Country = "Germany",
+                            LogoUrl = "https://content.sportslogos.net/leagues/thumbs/132.gif",
+                            Name = "Bundesliga"
+                        });
                 });
 
             modelBuilder.Entity("SportsBettingSystem.Data.Models.Player", b =>
@@ -364,6 +385,32 @@ namespace SportsBettingSystem.Web.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("Players");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 18,
+                            Appearance = 0,
+                            FirstName = "Pablo",
+                            Goals = 0,
+                            KitNumber = 30,
+                            LastName = "Gavi",
+                            Position = 8,
+                            TeamId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 22,
+                            Appearance = 0,
+                            FirstName = "Vinicius",
+                            Goals = 0,
+                            KitNumber = 22,
+                            LastName = "Jr",
+                            Position = 11,
+                            TeamId = 2
+                        });
                 });
 
             modelBuilder.Entity("SportsBettingSystem.Data.Models.Team", b =>
@@ -397,6 +444,40 @@ namespace SportsBettingSystem.Web.Migrations
                     b.HasIndex("LeagueId");
 
                     b.ToTable("Teams");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BadgeUrl = "https://content.sportslogos.net/logos/130/4016/thumbs/hy5fvvdkee83gg3r5ym22zr5o.gif",
+                            LeagueId = 1,
+                            Name = "Barcelona",
+                            StadiumName = "Camp Nou"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BadgeUrl = "https://content.sportslogos.net/logos/130/4017/thumbs/yfhezt5oyr0jbq29u4hp50w63.gif",
+                            LeagueId = 1,
+                            Name = "Real Madrid",
+                            StadiumName = "Santiago Bernabeu"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BadgeUrl = "https://content.sportslogos.net/logos/132/4069/thumbs/rr72mhpas38h85jdw85neas5f.gif",
+                            LeagueId = 2,
+                            Name = "Bayern Munich",
+                            StadiumName = "Allianz Arena"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BadgeUrl = "https://content.sportslogos.net/logos/132/4072/thumbs/yfkihagcptzem3rhhf4h22343.gif",
+                            LeagueId = 2,
+                            Name = "Borussia Dortmund",
+                            StadiumName = "Signal Induna Park"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

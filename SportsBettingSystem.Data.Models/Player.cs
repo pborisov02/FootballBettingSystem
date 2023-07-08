@@ -1,10 +1,13 @@
 ﻿namespace SportsBettingSystem.Data.Models
 {
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using static Common.EntityValidationConstants.Player;
     public class Player
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
@@ -24,10 +27,10 @@
         [Required]
         public int Age { get; set; }
 
-        [Required]
+        [DefaultValue(0)]
         public int Goals { get; set; }
-
-        [Required]
+        
+        [DefaultValue(0)]
         public int Appearance { get; set; }
 
         public int TeamId { get; set; }

@@ -1,6 +1,7 @@
 ﻿namespace SportsBettingSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using static Common.EntityValidationConstants.Team;
     public class Team
     {
@@ -11,6 +12,7 @@
             this.AwayGames = new HashSet<Game>();
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
