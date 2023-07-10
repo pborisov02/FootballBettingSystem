@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SportsBettingSystem.Services.Interfaces;
 using SportsBettingSystem.Web.ViewModels.League;
 
 namespace SportsBettingSystem.Web.Controllers
 {
+	[Authorize]
     public class LeagueController : Controller
     {
 		private readonly ILeagueService leagueService;
@@ -36,7 +38,7 @@ namespace SportsBettingSystem.Web.Controllers
 					.AddModelError(string.Empty, "Unexpected error occurred while trying to add your new house! Please try again later or contact administrator!");
 				return this.View(model);
 			}
-			return this.RedirectToAction("Index", "Home");
+			return this.RedirectToAction("Info", "Account");
 		}
 	}
 }

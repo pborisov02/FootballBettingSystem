@@ -53,8 +53,7 @@
                 .WithOne(t => t.League)
                 .HasForeignKey(t => t.LeagueId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
-            
+
             builder.Entity<ApplicationUser>()
                 .Property(u => u.CreatedOn)
                 .HasDefaultValue(DateTime.UtcNow);

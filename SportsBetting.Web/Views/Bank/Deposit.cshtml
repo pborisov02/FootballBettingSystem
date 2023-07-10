@@ -1,0 +1,14 @@
+﻿@model DepositWalletFundsFormModel;
+
+@{
+	ViewBag.Title = "Deposit funds";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<partial name="_DepositViewPartial" model ="@Model" />
+
+@section Scripts{
+		<partial name="_ValidationScriptsPartial" />
+}

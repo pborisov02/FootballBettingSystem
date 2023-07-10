@@ -1,0 +1,16 @@
+﻿@model DepositWalletFundsFormModel
+<div class="row">
+	<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+		<form method="post">
+			<div class="form-group">
+				<label asp-for="DepositAmmount"></label>
+				<input asp-for="DepositAmmount" class="form-control" placeholder="Deposit Ammount">
+				<span asp-validation-for="DepositAmmount" class="small text-danger"></span>
+			</div>
+			<div class="text-center">
+				<input class="btn btn-primary mt-3" type="submit" value="Deposit" />
+			</div>
+		</form>
+	</div>
+</div>
+
