@@ -5,16 +5,18 @@
     public class LeagueFormModel
     {
         [Required]
-        [Range(NameMinLength,NameMaxLength)]
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
         [Required]
-        [Range(CountryNameMinLength, CountryNameMaxLength)]
-        public string Country { get; set; } = null!;
+		[MinLength(CountryNameMinLength)]
+        [MaxLength(CountryNameMaxLength)]
+		public string Country { get; set; } = null!;
 
         [Required]
-        [Range(LogoUrlMinLength, LogoUrlMaxLength)]
-        [Display(Name = "League photo link")]
-        public string LogoUrl { get; set; } = null!;
+		[MinLength(LogoUrlMinLength)]
+        [MaxLength(LogoUrlMaxLength)]
+		public string LogoUrl { get; set; } = null!;
     }
 }

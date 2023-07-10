@@ -1,0 +1,14 @@
+﻿@model LeagueFormModel;
+
+@{
+	ViewBag.Title = "Add League";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<partial name="_LeagueFormPartial" model ="@Model" />
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}

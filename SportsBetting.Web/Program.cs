@@ -43,8 +43,7 @@ namespace SportsBetting.Web
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
                 });
 
-            //builder.Services.AddApplicationServices(typeof(AccountService));
-            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddApplicationServices(typeof(AccountService));
             WebApplication app = builder.Build();
 
 			if (app.Environment.IsDevelopment())
