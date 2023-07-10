@@ -29,6 +29,24 @@
                                 <a class="button_top nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </button>
                         </li>
+                        <li class="nav-item">
+                            <button id="myElement">
+                                <a class="button_top nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Show">Games</a>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button id="myElement">
+                                <a class="button_top nav-link text-dark" asp-area="" asp-controller="Leagues" asp-action="All">Leagues</a>
+                            </button>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Add</a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="League" asp-action="Add">League</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Add">Team</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Player" asp-action="Add">Player</a>
+                            </div>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
