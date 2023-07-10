@@ -8,6 +8,7 @@ namespace SportsBetting.Web
 	using SportsBettingSystem.Services;
 	using SportsBettingSystem.Services.Interfaces;
 	using SportsBettingSystem.Web.Infrastructure.Extensions;
+	using SportsBettingSystem.Web.Infrastructure.ModelBinders;
 
 
 
@@ -34,9 +35,16 @@ namespace SportsBetting.Web
 			})
 				.AddEntityFrameworkStores<SportsBettingDbContext>();
 			builder.Services.AddControllersWithViews();
+            
+			builder.Services
+                .AddControllersWithViews()
+                .AddMvcOptions(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                });
 
-			//builder.Services.AddApplicationServices(typeof(AccountService));
-			builder.Services.AddScoped<IAccountService, AccountService>();
+            //builder.Services.AddApplicationServices(typeof(AccountService));
+            builder.Services.AddScoped<IAccountService, AccountService>();
             WebApplication app = builder.Build();
 
 			if (app.Environment.IsDevelopment())
