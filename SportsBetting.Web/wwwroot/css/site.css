@@ -15,8 +15,19 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: dimgray;
+  color: black;
 }
-    body footer {
-        height: 25px;
-        margin-top: 325px;
+    body footer{
+        margin-top: 400px;
+    }
+    body footer div{
+        color: white;
+    }
+
+    body header {
+        background-color: darkred;
+        text-emphasis-color: black;
+        --bs-white-rgb: darkred;
+        color: azure;
     }

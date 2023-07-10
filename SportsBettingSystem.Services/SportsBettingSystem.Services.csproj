@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SportBettingSystem.Web.Infrastructure\SportsBettingSystem.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\SportsBettingSystem.Common\SportsBettingSystem.Common.csproj" />
+    <ProjectReference Include="..\SportsBettingSystem.Data.Models\SportsBettingSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\SportsBettingSystem.Data\SportsBettingSystem.Data.csproj" />
+    <ProjectReference Include="..\SportsBettingSystem.Web.ViewModel\SportsBettingSystem.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

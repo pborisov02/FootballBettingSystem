@@ -53,6 +53,12 @@
                 .WithOne(t => t.League)
                 .HasForeignKey(t => t.LeagueId)
                 .OnDelete(DeleteBehavior.Restrict);
+            
+            
+            builder.Entity<ApplicationUser>()
+                .Property(u => u.CreatedOn)
+                .HasDefaultValue(DateTime.UtcNow);
+
 
             builder.Entity<League>().HasData(GenerateLeagues());
             builder.Entity<Team>().HasData(GenerateTeams());
@@ -64,7 +70,7 @@
 
         private League[] GenerateLeagues()
         {
-            List<League> leagues = new List<League>();
+            List<League> leagues = new();
             var league = new League
             {
                 Id = 1,

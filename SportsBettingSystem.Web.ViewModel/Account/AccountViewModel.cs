@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace SportsBettingSystem.Web.ViewModels.Account
 {
-    internal class AccountViewModel
+    public class AccountViewModel
     {
+        public string Name { get; set; } = null!;
+        public string Email { get; set; } = null!;
+
+        public DateTime CreatedOn { get; set; }
+        public decimal WalletBalance { get; set; }
     }
 }

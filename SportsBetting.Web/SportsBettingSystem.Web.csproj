@@ -14,11 +14,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.13" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SportBettingSystem.Web.Infrastructure\SportsBettingSystem.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Common\SportsBettingSystem.Common.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Data\SportsBettingSystem.Data.csproj" />
+    <ProjectReference Include="..\SportsBettingSystem.Services\SportsBettingSystem.Services.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Web.ViewModel\SportsBettingSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
