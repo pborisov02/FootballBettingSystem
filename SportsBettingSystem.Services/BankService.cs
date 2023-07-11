@@ -29,6 +29,18 @@ namespace SportsBettingSystem.Services
 
 			user.WalletBallance += deposit;
 			await _db.SaveChangesAsync();
+		}
+
+		public async Task WithdrawAsync(Guid userId, decimal ammount)
+		{
+			ApplicationUser? user = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+			if (user == null)
+			{
+				throw new InvalidOperationException("There is no user with this Id");
+			}
+
+			user.WalletBallance -= ammount;
 			await _db.SaveChangesAsync();
 		}
 	}

@@ -23,7 +23,7 @@ namespace SportsBettingSystem.Services
         public async Task<AccountViewModel> DisplayAccountInfo(Guid userId)
         {
 
-            ApplicationUser user = await dbContext.Users.FirstAsync(u => u.Id == userId);
+            ApplicationUser user = await dbContext.Users.AsNoTracking().FirstAsync(u => u.Id == userId);
 
             AccountViewModel accountViewModel = new AccountViewModel
             {
@@ -35,5 +35,10 @@ namespace SportsBettingSystem.Services
 
             return accountViewModel;
         }
-    }
+
+		public async Task<ApplicationUser> GetUser(string userId)
+		{
+			return await dbContext.Users.AsNoTracking().FirstAsync(u => u.Id == Guid.Parse(userId));
+		}
+	}
 }

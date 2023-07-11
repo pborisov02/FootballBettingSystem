@@ -9,5 +9,7 @@ namespace SportsBettingSystem.Services.Interfaces
 	public interface IBankService
 	{
 		Task AddDepositAsync(string userId, decimal deposit);
+
+		Task WithdrawAsync(Guid userId, decimal ammount);
 	}
 }

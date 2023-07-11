@@ -1,0 +1,15 @@
+﻿@model WithdrawWalletFundsFormModel;
+
+@{
+	ViewBag.Title = "Withdraw funds";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<partial name="_WithdrawViewPartial" model="@Model" />
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}
+

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SportBettingSystem.Web.Infrastructure\SportsBettingSystem.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Common\SportsBettingSystem.Common.csproj" />
   </ItemGroup>
 

@@ -14,7 +14,7 @@ namespace SportsBettingSystem.Web.Controllers
 			this.leagueService = leagueService;
 		}
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
         {
             var leagueFormModel = new LeagueFormModel();
 
