@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SportsBettingSystem.Data;
 using SportsBettingSystem.Data.Models;
 using SportsBettingSystem.Services.Interfaces;
@@ -29,6 +30,15 @@ namespace SportsBettingSystem.Services
 			});
 
 			await _db.SaveChangesAsync();
+		}
+		public async Task<IEnumerable<LeagueServiceModel>> AllLeagues()
+		{
+			return await _db.Leagues
+				.Select(l => new LeagueServiceModel
+				{
+					Id = l.Id,
+					Name = l.Name
+				}).ToListAsync();
 		}
 	}
 }

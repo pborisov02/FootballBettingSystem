@@ -1,0 +1,14 @@
+﻿@model TeamFormModel;
+
+@{
+	ViewBag.Title = "Create Team";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<partial name="_TeamFormPartial" model="@Model" />
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}
