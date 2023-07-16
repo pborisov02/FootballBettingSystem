@@ -32,7 +32,7 @@ namespace SportsBettingSystem.Web.Controllers
 			{
 				await leagueService.CreateAsync(model);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				this.ModelState
 					.AddModelError(string.Empty, "Unexpected error occurred while trying to add your new house! Please try again later or contact administrator!");
