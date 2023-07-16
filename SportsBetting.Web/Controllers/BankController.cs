@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SportsBettingSystem.Data.Models;
-using SportsBettingSystem.Services;
-using SportsBettingSystem.Services.Interfaces;
-using SportsBettingSystem.Web.ViewModels.Bank;
-using System.Security.Claims;
-
-namespace SportsBettingSystem.Web.Controllers
+﻿namespace SportsBettingSystem.Web.Controllers
 {
+	using System.Security.Claims;
+	using Microsoft.AspNetCore.Authorization;
+	using Microsoft.AspNetCore.Mvc;
+	
+	using SportsBettingSystem.Data.Models;
+	using SportsBettingSystem.Services.Interfaces;
+	using SportsBettingSystem.Web.ViewModels.Bank;
 	[Authorize]
 	public class BankController : Controller
 	{
@@ -22,7 +21,7 @@ namespace SportsBettingSystem.Web.Controllers
 		[HttpGet]
 		public IActionResult Deposit()
 		{
-			DepositWalletFundsFormModel model = new DepositWalletFundsFormModel();
+			DepositWalletFundsFormModel model = new();
 			return View(model);
 		}
 
@@ -40,7 +39,7 @@ namespace SportsBettingSystem.Web.Controllers
 			catch (Exception)
 			{
 				this.ModelState
-					.AddModelError(string.Empty, "Unexpected error occurred while trying to add your new house! Please try again later or contact administrator!");
+					.AddModelError(string.Empty, "Unexpected error occurred! Please try again later or contact administrator!");
 				return this.View(model);
 			}
 			return this.RedirectToAction("Info", "Account");
@@ -50,7 +49,7 @@ namespace SportsBettingSystem.Web.Controllers
 		public async Task<IActionResult> Withdraw() 
 		{
 			ApplicationUser user = await accountService.GetUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
-			WithdrawWalletFundsFormModel model = new WithdrawWalletFundsFormModel(user.WalletBallance);
+			WithdrawWalletFundsFormModel model = new WithdrawWalletFundsFormModel();
 			return this.View(model);
 		}
 
@@ -58,14 +57,20 @@ namespace SportsBettingSystem.Web.Controllers
 		public async Task<IActionResult> Withdraw(WithdrawWalletFundsFormModel model)
 		{
 			ApplicationUser user = await accountService.GetUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
+			if(user.WalletBallance < model.WithdrawAmount || model.WithdrawAmount < 30)
+			{
+				this.ModelState
+					.AddModelError(string.Empty, $"Cannot withdraw less than 30$ or more than your wallet balance({user.WalletBallance}$)!");
+				return this.View(model);
+			}
 			try
 			{
 				await bankService.WithdrawAsync(user.Id, model.WithdrawAmount);
 			}
-			catch (Exception ex) 
+			catch (Exception) 
 			{
 				this.ModelState
-					.AddModelError(string.Empty, "Unexpected error occurred while trying to add your new house! Please try again later or contact administrator!");
+					.AddModelError(string.Empty, "Unexpected error occurred! Please try again later or contact administrator!");
 				return this.View(model);
 			}
 			return this.RedirectToAction("Info","Account");

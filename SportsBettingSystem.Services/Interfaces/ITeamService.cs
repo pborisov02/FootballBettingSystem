@@ -1,6 +1,5 @@
 ﻿namespace SportsBettingSystem.Services.Interfaces
 {
-	using SportsBettingSystem.Web.ViewModels.League;
 	using SportsBettingSystem.Web.ViewModels.Team;
 
 	public interface ITeamService

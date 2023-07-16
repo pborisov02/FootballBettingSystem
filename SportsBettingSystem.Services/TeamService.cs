@@ -1,11 +1,10 @@
 ﻿namespace SportsBettingSystem.Services
 {
 	using Microsoft.EntityFrameworkCore;
-	
+
 	using SportsBettingSystem.Data;
 	using SportsBettingSystem.Data.Models;
 	using SportsBettingSystem.Services.Interfaces;
-	using SportsBettingSystem.Web.ViewModels.League;
 	using SportsBettingSystem.Web.ViewModels.Team;
 	using System.Threading.Tasks;
 

@@ -7,8 +7,17 @@
 				<input asp-for="WithdrawAmount" class="form-control" placeholder="Withdraw Ammount">
 				<span asp-validation-for="WithdrawAmount" class="small text-danger"></span>
 			</div>
+			@{
+				if (!ViewData.ModelState.IsValid)
+				{
+					<div class="alert alert-danger">
+						@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+					</div>
+				}
+			}
+
 			<div class="text-center">
-				<input class="btn btn-primary mt-3" type="submit" value="Deposit" />
+				<input class="btn btn-primary mt-3" type="submit" value="Withdraw" />
 			</div>
 		</form>
 	</div>
