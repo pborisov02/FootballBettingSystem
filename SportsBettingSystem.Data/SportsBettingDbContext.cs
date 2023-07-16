@@ -11,7 +11,6 @@
             : base(options)
         {
         }
-        public DbSet<Player> Players { get; set; } = null!;
         public DbSet<Team> Teams { get; set; } = null!;
         public DbSet<League> Leagues { get; set; } = null!;
         public DbSet<Game> Games { get; set; } = null!;
@@ -19,11 +18,6 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Player>()
-                .HasOne(p => p.Team)
-                .WithMany(c => c.Players)
-                .HasForeignKey(p => p.TeamId)
-                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Team>()
                 .HasOne(t => t.League)
@@ -36,7 +30,7 @@
                 .WithOne(g => g.HomeTeam)
                 .HasForeignKey(g => g.HomeTeamId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
             builder.Entity<Team>()
                 .HasMany(t => t.AwayGames)
                 .WithOne(g => g.AwayTeam)
@@ -61,13 +55,11 @@
 
             builder.Entity<League>().HasData(GenerateLeagues());
             builder.Entity<Team>().HasData(GenerateTeams());
-            builder.Entity<Player>().HasData(GeneratePlayers());
-
             base.OnModelCreating(builder);
 
         }
 
-        private League[] GenerateLeagues()
+        private static League[] GenerateLeagues()
         {
             List<League> leagues = new();
             var league = new League
@@ -75,7 +67,7 @@
                 Id = 1,
                 Name = "La Liga",
                 Country = "Spain",
-                LogoUrl = "https://content.sportslogos.net/leagues/thumbs/130.gif",              
+                LogoUrl = "https://content.sportslogos.net/leagues/thumbs/130.gif",
             };
             leagues.Add(league);
             league = new League
@@ -90,7 +82,7 @@
             return leagues.ToArray();
         }
 
-        private Team[] GenerateTeams()
+        private static Team[] GenerateTeams()
         {
             var teams = new List<Team>();
             var team = new Team
@@ -131,37 +123,6 @@
             teams.Add(team);
 
             return teams.ToArray();
-        }
-
-        private Player[] GeneratePlayers()
-        {
-            var players = new List<Player>();
-
-            var player = new Player
-            {
-                Id = 1,
-                FirstName = "Pablo",
-                LastName = "Gavi",
-                Position = Position.CAM,
-                KitNumber = 30,
-                Age = 18,
-                TeamId = 1
-            };
-            players.Add(player);
-
-            player = new Player
-            {
-                Id = 2,
-                FirstName = "Vinicius",
-                LastName = "Jr",
-                Position = Position.LW,
-                KitNumber = 22,
-                Age = 22,
-                TeamId = 2
-            };
-            players.Add(player);
-
-            return players.ToArray();
         }
     }
 }

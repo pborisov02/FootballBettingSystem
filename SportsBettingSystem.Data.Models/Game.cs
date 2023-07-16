@@ -8,7 +8,6 @@
         public Game()
         {
             this.Id = Guid.NewGuid();
-            this.GoalScorres = new List<Player>();
             this.Bets = new HashSet<Bet>();
         }
 
@@ -36,8 +35,6 @@
         public int HomeGoals { get; set; }
        
         public int AwayGoals { get; set; }
-
-        public ICollection<Player> GoalScorres { get; set; }
 
         public decimal HomeOdd { get; set; }
 

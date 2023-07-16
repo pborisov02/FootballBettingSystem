@@ -7,7 +7,6 @@
     {
         public Team()
         {
-            this.Players = new HashSet<Player>();
             this.HomeGames = new HashSet<Game>();
             this.AwayGames = new HashSet<Game>();
         }
@@ -22,10 +21,7 @@
         [Required]
         [MaxLength(BadgeUrlMaxLength)]
         public string BadgeUrl { get; set; } = null!;
-
-
-        public virtual ICollection<Player> Players { get; set; }
-
+       
         [Required]
         [MaxLength(StadiumNameMaxLength)]
         public string StadiumName { get; set; } = null!;
