@@ -35,7 +35,7 @@ namespace SportsBettingSystem.Web.Controllers
 			catch (Exception)
 			{
 				this.ModelState
-					.AddModelError(string.Empty, "Unexpected error occurred while trying to add your new house! Please try again later or contact administrator!");
+					.AddModelError(string.Empty, "Unexpected error occurred while trying to add new league! Please try again later or contact administrator!");
 				return this.View(model);
 			}
 			return this.RedirectToAction("Info", "Account");

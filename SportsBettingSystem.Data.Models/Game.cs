@@ -14,6 +14,8 @@
         [Key]
         public Guid Id { get; set; }
 
+        public string Title { get { return $"{HomeTeam.Name} - {AwayTeam.Name}"; } }
+        
         [Required]
         [ForeignKey(nameof(HomeTeam))]
         public int HomeTeamId { get; set; }
