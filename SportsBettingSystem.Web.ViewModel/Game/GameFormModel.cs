@@ -1,10 +1,11 @@
 ﻿namespace SportsBettingSystem.Web.ViewModels.Game
 {
-    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     
     using SportsBettingSystem.Web.ViewModels.League;
     using SportsBettingSystem.Web.ViewModels.Team;
-    using System.ComponentModel.DataAnnotations;
+    using SportsBettingSystem.Web.Infrastructure.Extensions;
+
     public class GameFormModel
     {
         [Required]
@@ -14,6 +15,8 @@
         public int AwayTeamId { get; set; }
 
         [Required]
+        [Display(Name = "Date and time the match starts")]
+        [CustomDateTimeAtribute()]
         public DateTime Start { get; set; }
 
         [Range(1.01, 10)]

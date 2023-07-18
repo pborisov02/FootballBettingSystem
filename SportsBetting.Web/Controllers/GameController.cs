@@ -88,5 +88,13 @@
 			}
 			return this.RedirectToAction("Index", "Home");
         }
+
+		public async Task<IActionResult> Show()
+		{
+			IEnumerable<GameCardViewModel> games = await gameService.GetGamesAsync(DateTime.UtcNow);
+			games = games.OrderBy(g => g.League?.Name);
+			ViewBag.LeagueName = string.Empty;
+			return View(games);
+		}
     }
 }

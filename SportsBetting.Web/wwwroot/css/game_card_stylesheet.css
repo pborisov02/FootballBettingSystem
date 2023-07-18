@@ -1,0 +1,332 @@
+﻿.card {
+    font-size: 22px;
+    width: 600px;
+    height: 100px;
+    background: dimgrey;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    color: #8B0000;
+    font-weight: bolder;
+}
+
+.home {
+    position: relative;
+    top: 15px;
+    left: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 180px;
+    height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.away {
+    position: relative;
+    left: 10px;
+    top: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 180px;
+    height: 25px;
+}
+
+.time {
+    position: relative;
+    left: 200px;
+    bottom: 10px;
+    color: #000000;
+}
+
+.vs {
+    position: relative;
+    bottom: 35;
+    color: black;
+    left: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.homeWin {
+    position: relative;
+    bottom: 85;
+    color: yellow;
+    left: 180px;
+}
+
+.awayWin {
+    position: relative;
+    bottom: 56;
+    color: yellow;
+    left: 180px;
+}
+
+.prediction-button {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #8B0000;
+    box-shadow: 0 0 0 2px #ffffff20;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+    .prediction-button span:last-child {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background-color: DarkRed;
+        border-radius: 50%;
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    .prediction-button span:first-child {
+        position: relative;
+        z-index: 1;
+    }
+
+    .prediction-button:hover {
+        box-shadow: 0 0 0 2px DarkRed;
+        color: #696969;
+    }
+
+    .prediction-button:active {
+        scale: 0.95;
+    }
+
+    .prediction-button:hover span:last-child {
+        width: 150px;
+        height: 150px;
+        opacity: 1;
+    }
+
+#home {
+    position: relative;
+    left: 300;
+    bottom: 69;
+    ;
+}
+
+#draw {
+    position: relative;
+    left: 315;
+    bottom: 69;
+    ;
+}
+
+#away {
+    position: relative;
+    left: 330;
+    bottom: 69;
+    ;
+}
+
+.line-1 {
+    height: 1px;
+    width: 100;
+    background: black;
+    transform: rotate(90deg);
+    position: relative;
+    bottom: 93;
+    left: 130;
+}
+
+.line-2 {
+    height: 1px;
+    width: 100;
+    background: black;
+    transform: rotate(90deg);
+    position: relative;
+    bottom: 94;
+    left: 225;
+}
+
+.league {
+    font-size: 22px;
+    width: 600px;
+    height: 30px;
+    background: dimgrey;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    color: #8B0000;
+    font-weight: bolder;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    padding-bottom: 0px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 2px; /* Remove the default margin */
+    width: 600px;
+    padding: 0;
+}
+
+    li.LeagueLi {
+        margin-bottom: 2px; /* Remove the default margin */
+        width: 400px;
+        height: 30px;
+    }
+
+.radio-inputs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    max-width: 7000px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .radio-inputs > * {
+        margin: 6px;
+    }
+
+.radio-input:checked + .radio-tile {
+    border-color: #8B0000;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #8B0000;
+}
+
+    .radio-input:checked + .radio-tile:before {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+        background-color: #8B0000;
+        border-color: dimgray;
+    }
+
+    .radio-input:checked + .radio-tile .radio-icon svg {
+        fill: #8B0000;
+    }
+
+    .radio-input:checked + .radio-tile .radio-label {
+        color: #8B0000;
+    }
+
+.radio-input:focus + .radio-tile {
+    border-color: #8B0000;
+    ;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #8B0000;
+    ;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px gray;
+}
+
+    .radio-input:focus + .radio-tile:before {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+
+.radio-tile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 80px;
+    min-height: 80px;
+    border-radius: 0.5rem;
+    border: 3px solid #8B0000;
+    ;
+    background-color: #696969;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition: 0.15s ease;
+    transition: 0.15s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+    .radio-tile:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 0.75rem;
+        height: 0.75rem;
+        border: 2px solid gray;
+        background-color: #8B0000;
+        ;
+        border-radius: 50%;
+        top: 0.25rem;
+        left: 0.25rem;
+        opacity: 0;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        -webkit-transition: 0.25s ease;
+        transition: 0.25s ease;
+    }
+
+    .radio-tile:hover {
+        border-color: gray;
+        ;
+    }
+
+        .radio-tile:hover:before {
+            -webkit-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+            opacity: 1;
+        }
+
+.radio-icon svg {
+    width: 2rem;
+    height: 2rem;
+    fill: #494949;
+}
+
+.radio-label {
+    color: #8B0000;
+    ;
+    -webkit-transition: 0.375s ease;
+    transition: 0.375s ease;
+    text-align: center;
+    font-size: 13px;
+}
+
+.radio-input {
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+} 

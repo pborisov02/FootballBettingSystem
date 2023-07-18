@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsBettingSystem.Data;
 
@@ -11,9 +12,10 @@ using SportsBettingSystem.Data;
 namespace SportsBettingSystem.Web.Migrations
 {
     [DbContext(typeof(SportsBettingDbContext))]
-    partial class SportsBettingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230717232415_changed_the_games_Entity")]
+    partial class changed_the_games_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 18, 0, 53, 25, 623, DateTimeKind.Utc).AddTicks(5141));
+                        .HasDefaultValue(new DateTime(2023, 7, 17, 23, 24, 15, 169, DateTimeKind.Utc).AddTicks(9918));
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -287,9 +289,6 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<int>("HomeTeamId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LeagueId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Result")
                         .HasColumnType("int");
 
@@ -301,8 +300,6 @@ namespace SportsBettingSystem.Web.Migrations
                     b.HasIndex("AwayTeamId");
 
                     b.HasIndex("HomeTeamId");
-
-                    b.HasIndex("LeagueId");
 
                     b.ToTable("Games");
                 });
@@ -502,17 +499,9 @@ namespace SportsBettingSystem.Web.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SportsBettingSystem.Data.Models.League", "League")
-                        .WithMany()
-                        .HasForeignKey("LeagueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AwayTeam");
 
                     b.Navigation("HomeTeam");
-
-                    b.Navigation("League");
                 });
 
             modelBuilder.Entity("SportsBettingSystem.Data.Models.Team", b =>

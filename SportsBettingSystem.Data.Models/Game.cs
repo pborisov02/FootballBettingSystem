@@ -15,7 +15,7 @@
         public Guid Id { get; set; }
 
         public string Title { get { return $"{HomeTeam.Name} - {AwayTeam.Name}"; } }
-        
+
         [Required]
         [ForeignKey(nameof(HomeTeam))]
         public int HomeTeamId { get; set; }
@@ -33,10 +33,6 @@
 
         [Required]
         public DateTime Start { get; set; }
-
-        public int HomeGoals { get; set; }
-       
-        public int AwayGoals { get; set; }
 
         public decimal HomeOdd { get; set; }
 

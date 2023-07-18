@@ -10,5 +10,7 @@ namespace SportsBettingSystem.Services.Interfaces
     public interface IGameService
     {
         Task CreateAsync(GameFormModel leagueFormModel);
+        Task<IEnumerable<GameCardViewModel>> GetGamesAsync(DateTime dateTime);
     }
+    
 }
