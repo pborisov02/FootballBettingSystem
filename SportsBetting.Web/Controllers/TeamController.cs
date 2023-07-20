@@ -20,8 +20,8 @@
 		{
 			return View(new TeamFormModel()
 			{
-				Leagues = await _leagueService.AllLeagues()
-			}); ;
+				Leagues = await _leagueService.AllLeaguesAsync()
+			});
 		}
 		[HttpPost]
 		public async Task<IActionResult> Add(TeamFormModel model)

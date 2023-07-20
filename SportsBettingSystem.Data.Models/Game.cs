@@ -8,7 +8,7 @@
         public Game()
         {
             this.Id = Guid.NewGuid();
-            this.Bets = new HashSet<Bet>();
+            this.GameBets = new HashSet<GameBet>();
         }
 
         [Key]
@@ -41,6 +41,6 @@
 
         public int Result { get; set; }
 
-        public virtual ICollection<Bet> Bets { get; set; }
+        public virtual ICollection<GameBet> GameBets { get; set; }
     }
 }

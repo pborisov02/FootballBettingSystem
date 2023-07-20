@@ -1,101 +1,93 @@
-﻿@model IEnumerable<GameCardViewModel>;
+﻿@model GameQuerryModel;
 @{
-	Layout = null;
 	ViewBag.Title = "Games";
 }
 <link rel="stylesheet" href="~/css/game_card_stylesheet.css" asp-append-version="true" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <h2>@ViewBag.Title</h2>
 <hr />
-<div class="radio-inputs">
-	<label>
-		<input class="radio-input" type="radio">
-		<span class="radio-tile">
-			<span class="radio-icon">
-			</span>
-			<span class="radio-label">10.07</span>
-		</span>
-	</label>
-	<label>
-		<input class="radio-input" type="radio">
-		<span class="radio-tile">
-			<span class="radio-icon">
-			</span>
-			<span class="radio-label">11.07</span>
-		</span>
-	</label>
-	<label>
-		<input class="radio-input" type="radio">
-		<span class="radio-tile">
-			<span class="radio-icon">
-			</span>
-			<span class="radio-label">12.07</span>
-		</span>
-	</label>
-	<label>
-		<input class="radio-input" type="radio">
-		<span class="radio-tile">
-			<span class="radio-icon">
-			</span>
-			<span class="radio-label">13.07</span>
-		</span>
-	</label>
-	<label>
-		<input class="radio-input" type="radio">
-		<span class="radio-tile">
-			<span class="radio-icon">
-			</span>
-			<span class="radio-label">14.07</span>
-		</span>
-	</label>
-	<label>
-		<input class="radio-input" type="radio">
-		<span class="radio-tile">
-			<span class="radio-icon">
-			</span>
-			<span class="radio-label">15.07</span>
-		</span>
-	</label>
-	<label>
-		<input class="radio-input" type="radio">
-		<span class="radio-tile">
-			<span class="radio-icon">
-			</span>
-			<span class="radio-label">16.07</span>
-		</span>
-	</label>
-</div>
+<partial name="_GamesFilterPartial" model="@Model" />
+<partial name="_GamesCardsPartial" model="@Model.Games" />
 
-<div>
-<ul>
-	@foreach (var game in Model)
-	{
-		if (game.League.Name != ViewBag.LeagueName)
-		{
-			ViewBag.LeagueName = game.League.Name;
-			<li class="LeagueLi"><div class="league">@game.League.Name</div></li>
-		}
-		<li>
-				<div class="card">
-					<div class="home">@game.HomeTeam.Name</div>
-					<div class="away">@game.AwayTeam.Name</div>
-					<div class="time">@game.Start.ToString("HH:mm")</div>
-					<div class="vs">vs</div>
-						<button class="prediction-button" id="home">
-							<span>@game.HomeOdd</span>
-							<span></span>
-						</button>
-						<button class="prediction-button" id="draw">
-							<span>@game.DrawOdd</span>
-							<span></span>
-						</button>
-						<button class="prediction-button" id="away">
-							<span>@game.AwayOdd</span>
-							<span></span>
-						</button>
-						<div class="line-1"></div>
-						<div class="line-2"></div>
-				</div>
-		</li>
-	}
-</ul>
-</div>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+	<script>
+		$(document).ready(function () {
+			function populateGames(data) {
+				console.log(data);
+				var gamesList = $('#listOfGames');
+				gamesList.empty(); 
+
+				let leagueName = '';
+				$.each(data, function (index, game) {
+					if (game.league.name != leagueName) {
+						leagueName = game.league.name;
+						var listItem = $('<li class="LeagueLi"></li>');
+						var card = $('<div class="league"></div>');
+						card.append('<div class="league">' + leagueName + '</div>');
+						listItem.append(card);
+						gamesList.append(listItem);
+					}
+					var listItem = $('<li></li>');
+					var card = $('<div class="card"></div>');
+
+					card.append('<div class="home">' + game.homeTeam.name + '</div>');
+					card.append('<div class="away">' + game.awayTeam.name + '</div>');
+					card.append('<div class="time">' + game.startFormatted + '</div>');
+					card.append('<div class="vs">' + 'vs' + '</div>');
+					card.append('<button class="prediction-button" id="home">' + '<span>' + game.homeOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
+					card.append('<button class="prediction-button" id="draw">' + '<span>' + game.drawOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
+					card.append('<button class="prediction-button" id="away">' + '<span>' + game.awayOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
+					card.append('<div class="line-1"></div>');
+					card.append('<div class="line-2"></div>');
+					card.append('<div id="home">home</div>');
+					card.append('<div id="draw">draw</div>');
+					card.append('<div id="away">away</div>');
+					listItem.append(card);
+					gamesList.append(listItem);
+				});
+			}
+
+			$('#leagueDropdown').on('change', function () {
+				var requestData = {
+					leagueId: $(this).val(),
+					days: $('input[name="DaysToAdd"]:checked').val()
+					
+				};
+
+				$.ajax({
+					url: '/Game/GetGamesByLeagueAndDate',
+					type: 'GET',
+					data: requestData,
+					success: function (data) {
+						populateGames(data);
+					},
+					error: function () {
+						console.log('Error fetching games.');
+					}
+				});
+			});
+
+			$('#DateRadioBtns').on('change', function () {
+				var requestData = {
+					leagueId: $('#leagueDropdown').val(),
+					days: $('input[name="DaysToAdd"]:checked').val()
+					
+				};
+
+				$.ajax({
+					url: '/Game/GetGamesByLeagueAndDate',
+					type: 'GET',
+					data: requestData,
+					success: function (data) {
+						populateGames(data);
+					},
+					error: function () {
+						console.log('Error fetching games.');
+					}
+				});
+			});
+		});
+	</script>
+}

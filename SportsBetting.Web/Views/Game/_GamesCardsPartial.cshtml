@@ -1,24 +1,36 @@
 ﻿@model IEnumerable<GameCardViewModel>;
-<ul>
+<ul id="listOfGames">
 	@foreach (var game in Model)
 	{
 		if (game.League.Name != ViewBag.LeagueName)
 		{
 			ViewBag.LeagueName = game.League.Name;
-			<li class="LeagueLi"><div class="league">@game.League.Name</div></li>			
+			<li class="LeagueLi"><div class="league">@game.League.Name</div></li>
 		}
 		<li>
-			<a class="GameLink" asp-area="" asp-controller="Game" asp-action="OneGame" asp-route-id="@game.Id">
-				<div class="card">
-					<div class="home">@game.HomeTeam.Name</div>
-					<div class="away">@game.AwayTeam.Name</div>
-					<div class="time">@game.Start.ToString("HH:mm")</div>
-					<div class="vs">vs</div>
-					<div class="homeWin">@game.HomeOdd</div>
-					<div class="awayWin">@game.AwayOdd</div>
-					<div class="line"></div>
-				</div>
-			</a>
+			<div class="card">
+				<div class="home">@game.HomeTeam.Name</div>
+				<div class="away">@game.AwayTeam.Name</div>
+				<div class="time">@game.Start.ToString("HH:mm")</div>
+				<div class="vs">vs</div>
+				<button class="prediction-button" id="home">
+					<span>@game.HomeOdd</span>
+					<span></span>
+				</button>
+				<button class="prediction-button" id="draw">
+					<span>@game.DrawOdd</span>
+					<span></span>
+				</button>
+				<button class="prediction-button" id="away">
+					<span>@game.AwayOdd</span>
+					<span></span>
+				</button>
+				<div class="line-1"></div>
+				<div class="line-2"></div>
+				<div id="home">home</div>
+				<div id="draw">draw</div>
+				<div id="away">away</div>
+			</div>
 		</li>
 	}
 </ul>

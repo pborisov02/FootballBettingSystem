@@ -10,6 +10,7 @@ namespace SportsBettingSystem.Web.ViewModels.Game
 {
 	public class GameCardViewModel
 	{
+		
 		public Guid Id { get; set; }
 		public decimal HomeOdd { get; set; }
 		public decimal AwayOdd { get; set; }
@@ -20,5 +21,12 @@ namespace SportsBettingSystem.Web.ViewModels.Game
 		public TeamServiceModel AwayTeam { get; set; } = null!;
 		public LeagueServiceModel League { get; set; } = null!;
         public DateTime Start { get; set; }
+		public string StartFormatted
+		{
+			get
+			{
+				return Start.ToString("HH:mm");
+			}
+		} 
 	}
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsBettingSystem.Data;
 
@@ -11,9 +12,10 @@ using SportsBettingSystem.Data;
 namespace SportsBettingSystem.Web.Migrations
 {
     [DbContext(typeof(SportsBettingDbContext))]
-    partial class SportsBettingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230720031944_changedBetEntity")]
+    partial class changedBetEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 20, 16, 18, 16, 735, DateTimeKind.Utc).AddTicks(7866));
+                        .HasDefaultValue(new DateTime(2023, 7, 20, 3, 19, 44, 52, DateTimeKind.Utc).AddTicks(7035));
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -245,14 +247,8 @@ namespace SportsBettingSystem.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("BetAmmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<bool>("IsWinning")
                         .HasColumnType("bit");
-
-                    b.Property<decimal>("Multiplier")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Prediction")
                         .HasColumnType("int");

@@ -1,0 +1,74 @@
+﻿@model GameQuerryModel;
+<ul>
+	<li>
+		<div class="form-group">
+			<select id="leagueDropdown" class="form-control">
+				<option value="@(-1)">none</option>
+				@foreach (var team in Model.Leagues!)
+				{
+					<option value="@team.Id">@team.Name</option>
+				}
+			</select>
+		</div>
+	</li>
+	<li>
+		<div id="DateRadioBtns" class="radio-inputs">
+			<label>
+				<input class="radio-input" asp-for="DaysToAdd" type="radio" value="0" />
+				<span class="radio-tile">
+					<span class="radio-icon">
+					</span>
+					<span class="radio-label">@DateTime.UtcNow.ToString("dd/MM")</span>
+				</span>
+			</label>
+			<label>
+				<input class="radio-input" asp-for="DaysToAdd" type="radio" value="1" />
+				<span class="radio-tile">
+					<span class="radio-icon">
+					</span>
+					<span class="radio-label">@DateTime.UtcNow.AddDays(1).ToString("dd/MM")</span>
+				</span>
+			</label>
+			<label>
+				<input class="radio-input" asp-for="DaysToAdd" type="radio" value="2" />
+				<span class="radio-tile">
+					<span class="radio-icon">
+					</span>
+					<span class="radio-label">@DateTime.UtcNow.AddDays(2).ToString("dd/MM")</span>
+				</span>
+			</label>
+			<label>
+				<input class="radio-input" asp-for="DaysToAdd" type="radio" value="3" />
+				<span class="radio-tile">
+					<span class="radio-icon">
+					</span>
+					<span class="radio-label">@DateTime.UtcNow.AddDays(3).ToString("dd/MM")</span>
+				</span>
+			</label>
+			<label>
+				<input class="radio-input" asp-for="DaysToAdd" type="radio" value="4" />
+				<span class="radio-tile">
+					<span class="radio-icon">
+					</span>
+					<span class="radio-label">@DateTime.UtcNow.AddDays(4).ToString("dd/MM")</span>
+				</span>
+			</label>
+			<label>
+				<input class="radio-input" asp-for="DaysToAdd" type="radio" value="5" />
+				<span class="radio-tile">
+					<span class="radio-icon">
+					</span>
+					<span class="radio-label">@DateTime.UtcNow.AddDays(5).ToString("dd/MM")</span>
+				</span>
+			</label>
+			<label>
+				<input class="radio-input" asp-for="DaysToAdd" type="radio" value="6" />
+				<span class="radio-tile">
+					<span class="radio-icon">
+					</span>
+					<span class="radio-label">@DateTime.UtcNow.AddDays(6).ToString("dd/MM")</span>
+				</span>
+			</label>
+		</div>
+	</li>
+</ul>

@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using SportsBettingSystem.Data.Models;
+    using System.Reflection.Emit;
 
     public class SportsBettingDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
@@ -18,8 +19,24 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+			builder.Entity<GameBet>().HasKey(gb => new { gb.GameId, gb.BetId});
 
-            builder.Entity<Team>()
+			builder.Entity<GameBet>()
+				.HasOne(gb => gb.Game)
+				.WithMany(g => g.GameBets)
+				.HasForeignKey(gb => gb.GameId).OnDelete(DeleteBehavior.Restrict);
+            
+
+
+			builder.Entity<GameBet>()
+				.HasOne(gb => gb.Bet)
+				.WithMany(g => g.GameBets)
+				.HasForeignKey(gb => gb.BetId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
+			builder.Entity<Team>()
                 .HasOne(t => t.League)
                 .WithMany(l => l.Teams)
                 .HasForeignKey(t => t.LeagueId)
@@ -36,13 +53,9 @@
                 .WithOne(g => g.AwayTeam)
                 .HasForeignKey(g => g.AwayTeamId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Bet>()
-                .HasOne(b => b.Game)
-                .WithMany(g => g.Bets)
-                .HasForeignKey(b => b.GameId)
-                .OnDelete(DeleteBehavior.Restrict);
-            builder.Entity<League>()
+                
+                
+                builder.Entity<League>()
                 .HasMany(l => l.Teams)
                 .WithOne(t => t.League)
                 .HasForeignKey(t => t.LeagueId)

@@ -20,7 +20,7 @@
 			<div class="form-group">
 				<label asp-for="LeagueId"></label>
 				<select asp-for="LeagueId" class="form-control">
-					@foreach (var league in Model.Leagues)
+					@foreach (var league in Model.Leagues!)
 					{
 						<option value="@league.Id">@league.Name</option>
 					}
