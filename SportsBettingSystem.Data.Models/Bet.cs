@@ -12,17 +12,19 @@ namespace SportsBettingSystem.Data.Models
         
         [Key]
         public Guid Id { get; set; }
-        public IEnumerable<GameBet> GameBets { get; set; }
-        public int Prediction { get; set; }
+        public virtual ICollection<GameBet> GameBets { get; set; }
         public bool IsWinning { get; set; }
         public decimal Multiplier { get; set; }
         public decimal BetAmmount { get; set; }
 
+        public bool gamesFinished { get; set; }
 
         [Required]
         public Guid UserId { get; set;}
 
         [Required]
-        public ApplicationUser User { get; set; }
-    }
+        public ApplicationUser User { get; set; } = null!;
+		
+	}
+
 }

@@ -13,15 +13,15 @@
 				<div class="away">@game.AwayTeam.Name</div>
 				<div class="time">@game.Start.ToString("HH:mm")</div>
 				<div class="vs">vs</div>
-				<button class="prediction-button" id="home">
+				<button class="prediction-button" data-info="@game.Id" data-key="1" id="home">
 					<span>@game.HomeOdd</span>
 					<span></span>
 				</button>
-				<button class="prediction-button" id="draw">
+				<button class="prediction-button" data-info="@game.Id" data-key="0" id="draw">
 					<span>@game.DrawOdd</span>
 					<span></span>
 				</button>
-				<button class="prediction-button" id="away">
+				<button class="prediction-button" data-info="@game.Id" data-key="2" id="away">
 					<span>@game.AwayOdd</span>
 					<span></span>
 				</button>

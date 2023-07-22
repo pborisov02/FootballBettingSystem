@@ -1,5 +1,7 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,25 +10,24 @@ html {
   }
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
 
 body {
-  margin-bottom: 60px;
-  background-color: dimgray;
-  color: black;
+    margin-bottom: 1em;
+    background-color: dimgray;
+    color: black;
 }
-    body footer{
-        margin-top: 400px;
-    }
-    body footer div{
-        color: white;
-    }
 
-    body header {
-        background-color: darkred;
-        text-emphasis-color: black;
-        --bs-white-rgb: darkred;
-    }
+footer {
+    margin-top: 1em;
+    position: relative;
+    bottom: 0;
+    max-width: inherit;
+}
+body footer div {
+    color: white;
+}
+header {
+    background-color: darkred;
+    text-emphasis-color: black;
+    --bs-white-rgb: darkred;
+}

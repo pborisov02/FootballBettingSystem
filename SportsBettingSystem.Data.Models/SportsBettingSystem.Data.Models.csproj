@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SportsBettingSystem.Common\SportsBettingSystem.Common.csproj" />
+    <ProjectReference Include="..\SportsBettingSystem.Web.ViewModel\SportsBettingSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿namespace SportsBettingSystem.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
+    using SportsBettingSystem.Web.ViewModels;
     using System.ComponentModel;
 
     public class ApplicationUser : IdentityUser<Guid>
@@ -10,7 +11,6 @@
             this.Bets = new HashSet<Bet>();
         }
         public decimal WalletBallance { get; set; }
-
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public DateTime CreatedOn { get; set; }

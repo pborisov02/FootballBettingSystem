@@ -41,6 +41,7 @@
 
         public int Result { get; set; }
 
+        public bool isFinished { get; set; }
         public virtual ICollection<GameBet> GameBets { get; set; }
     }
 }

@@ -18,15 +18,15 @@
         }
         public async Task CreateAsync(GameFormModel gameFormModel)
         {
-            await _db.Games.AddAsync(new Game
-            {
-                HomeTeamId = gameFormModel.HomeTeamId,
-                AwayTeamId = gameFormModel.AwayTeamId,
-                Start = gameFormModel.Start,
-                AwayOdd = gameFormModel.AwayOdd,
-                HomeOdd = gameFormModel.HomeOdd,
-                DrawOdd= gameFormModel.DrawOdd
-            });
+			await _db.Games.AddAsync(new Game
+			{
+				HomeTeamId = gameFormModel.HomeTeamId,
+				AwayTeamId = gameFormModel.AwayTeamId,
+				Start = gameFormModel.Start,
+				AwayOdd = gameFormModel.AwayOdd,
+				HomeOdd = gameFormModel.HomeOdd,
+				DrawOdd = gameFormModel.DrawOdd,
+			});
 
             await _db.SaveChangesAsync();
         }

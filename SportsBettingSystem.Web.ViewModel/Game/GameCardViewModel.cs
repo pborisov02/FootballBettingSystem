@@ -10,7 +10,6 @@ namespace SportsBettingSystem.Web.ViewModels.Game
 {
 	public class GameCardViewModel
 	{
-		
 		public Guid Id { get; set; }
 		public decimal HomeOdd { get; set; }
 		public decimal AwayOdd { get; set; }

@@ -173,7 +173,7 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 20, 16, 18, 16, 735, DateTimeKind.Utc).AddTicks(7866));
+                        .HasDefaultValue(new DateTime(2023, 7, 22, 17, 14, 36, 562, DateTimeKind.Utc).AddTicks(2147));
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -254,11 +254,11 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<decimal>("Multiplier")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Prediction")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("gamesFinished")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -294,6 +294,9 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("isFinished")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AwayTeamId");
@@ -310,6 +313,9 @@ namespace SportsBettingSystem.Web.Migrations
 
                     b.Property<Guid>("BetId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Prediction")
+                        .HasColumnType("int");
 
                     b.HasKey("GameId", "BetId");
 

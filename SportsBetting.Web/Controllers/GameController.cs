@@ -89,7 +89,7 @@
 		[HttpGet]
 		public async Task<IActionResult> Show()
 		{
-			GameQuerryModel model = new GameQuerryModel()
+			GameServiceModel model = new GameServiceModel()
 			{
 				Date = DateTime.Now,
 				AllGames = await gameService.AllAsync(),

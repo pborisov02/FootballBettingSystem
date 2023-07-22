@@ -1,21 +1,53 @@
-﻿@model GameQuerryModel;
+﻿@model GameServiceModel;
 @{
 	ViewBag.Title = "Games";
 }
 <link rel="stylesheet" href="~/css/game_card_stylesheet.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/one_game_bets_stylesheet.css" asp-append-version="true" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <h2>@ViewBag.Title</h2>
 <hr />
+
 <partial name="_GamesFilterPartial" model="@Model" />
-<partial name="_GamesCardsPartial" model="@Model.Games" />
+<div class="layoutContainer">
+<div>
+	<partial name="_GamesCardsPartial" model="@Model.Games" />
+</div>
+	<div class="betGameInput">
+		<div class="oneGameBets">
+			<ul id = "oneGameBetsList">
+				@**<li value="gameId">
+					<div class="betCard">
+						<div class="betCard__content">
+							<p class=BetHomeTeam>Real Madrid </p>
+							<p class=BetAwayTeam>Real Madrid </p>
+							<p class="BetVs">vs</p>
+							<p class="BetMultiplier">2.00</p>
+							<p class="BetDateTime">13.05 - 20:30</p>
+							<div></div>
+						</div>
+					</div>
+				</li>**@
+			</ul>
+		</div>
+		<div class="userBetInput">
+			<input name="text" class="BetAmmountInput" pattern="^(\d{1,5}|\d{0,5}\.\d{1,2})$" placeholder="Bet ammount">
+			<button class="MakeABetButton">
+				<span class="MakeABetButton-content">Make a bet</span>
+			</button>
+		</div>
+	</div>
+</div>
 
 
 @section Scripts{
 	<partial name="_ValidationScriptsPartial" />
 	<script>
+		modelData = @Json.Serialize(Model.OneGameBets);
+	</script>
+	<script>
 		$(document).ready(function () {
 			function populateGames(data) {
-				console.log(data);
 				var gamesList = $('#listOfGames');
 				gamesList.empty(); 
 
@@ -29,16 +61,16 @@
 						listItem.append(card);
 						gamesList.append(listItem);
 					}
-					var listItem = $('<li></li>');
+					var listItem = $('<li ></li>');
 					var card = $('<div class="card"></div>');
 
 					card.append('<div class="home">' + game.homeTeam.name + '</div>');
 					card.append('<div class="away">' + game.awayTeam.name + '</div>');
 					card.append('<div class="time">' + game.startFormatted + '</div>');
 					card.append('<div class="vs">' + 'vs' + '</div>');
-					card.append('<button class="prediction-button" id="home">' + '<span>' + game.homeOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
-					card.append('<button class="prediction-button" id="draw">' + '<span>' + game.drawOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
-					card.append('<button class="prediction-button" id="away">' + '<span>' + game.awayOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
+					card.append('<button class="prediction-button"  data-info="' + game.id + '" data-key="1" id="home">' + '<span>' + game.homeOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
+					card.append('<button class="prediction-button"  data-info="' + game.id + '" data-key="0" id="draw">' + '<span>' + game.drawOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
+					card.append('<button class="prediction-button"  data-info="' + game.id + '" data-key="2"  id="away">' + '<span>' + game.awayOdd.toFixed(2) + '</span>' + '<span></span>' + '</button>');
 					card.append('<div class="line-1"></div>');
 					card.append('<div class="line-2"></div>');
 					card.append('<div id="home">home</div>');
@@ -46,6 +78,28 @@
 					card.append('<div id="away">away</div>');
 					listItem.append(card);
 					gamesList.append(listItem);
+				});
+			}
+			function populateOneGamesBets(data) {
+				var oneGamesList = $('#oneGameBetsList');
+				oneGamesList.empty();
+				$.each(data, function (index, item) {
+					var game = item.game;
+					var prediction = item.prediction;
+					var multiplier = item.multiplier;
+
+					var listItem = $('<li></li>');
+					var card = $('<div class="betCard" id =' + game.id + '></div>');
+					card.append('<div class="betCard__content"></div>');
+					card.append('<p class="BetHomeTeam">' + game.homeTeam.name + '</p>');
+					card.append('<p class="BetAwayTeam">' + game.awayTeam.name + '</p>');
+					card.append('<p class="BetVs">vs</p>');
+					card.append('<p class="BetMultiplier">' + multiplier.toFixed(2) + '</p>');
+					card.append('<p class="BetDateTime">' + game.start[5] + game.start[6] + '/' + game.start[8] + game.start[9] + ' - ' + game.startFormatted + '</p>');
+					card.append('<div></div>');
+
+					listItem.append(card);
+					oneGamesList.append(listItem);
 				});
 			}
 
@@ -88,6 +142,65 @@
 					}
 				});
 			});
+
+			$('#listOfGames').on('click', '.prediction-button', function (event) {
+				event.stopPropagation();
+
+				var requestData = {
+					gameId: $(this).data('info'),
+					prediction: $(this).data('key')
+				};
+
+				var prediction = $(this).data('key');
+				
+				for (let i = 0; i < modelData.length; i++) {
+					if (modelData[i].game.id == requestData.gameId) {
+						console.log(modelData);
+						modelData.splice(i, 1);
+						console.log(modelData);
+						break;
+					}
+				}
+
+				$.ajax({
+					url: '/Bet/CreateOneGameBet',
+					type: 'GET',
+					data: requestData,
+					success: function (data) {
+						modelData.push(data);
+						populateOneGamesBets(modelData);
+					},
+					error: function () {
+						console.log('Error fetching games.');
+					}
+				});
+			});
+			$('.MakeABetButton').on('click', function () {
+				var betAmount = $('.BetAmmountInput').val();
+				if (!isValidBetAmount(betAmount)) {
+					alert('Invalid bet amount. The bet ammount should be a number bigger than 2.00!.');
+					return; 
+				}
+
+				$.ajax({
+					url: '/BET/CreateBet',
+					type: 'POST',
+					data: {
+						betAmount: betAmount,
+						oneGameBets: modelData 
+					},
+					success: function (response) {
+
+					},
+					error: function () {
+						console.log('Error making the bet.');
+					}
+				});
+			});
 		});
+		function isValidBetAmount(amount) {
+			var regex = /^(?:[1-9]\d{0,4}|\d{1,4}\.\d{1,2})$/;
+			return regex.test(amount);
+		}
 	</script>
 }
