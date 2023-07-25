@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SportsBettingSystem.Web.ViewModels.Game
 {
-	public class GameCardViewModel
+	public class GameViewModel
 	{
 		public Guid Id { get; set; }
 		public decimal HomeOdd { get; set; }

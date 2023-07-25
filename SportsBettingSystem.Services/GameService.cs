@@ -31,11 +31,11 @@
             await _db.SaveChangesAsync();
         }
 
-		public async Task<IEnumerable<GameCardViewModel>> AllAsync()
+		public async Task<IEnumerable<GameViewModel>> AllAsync()
 		{
 
-            IEnumerable<GameCardViewModel> games = await _db.Games
-				.Select(g => new GameCardViewModel
+            IEnumerable<GameViewModel> games = await _db.Games
+				.Select(g => new GameViewModel
                 {
 					Id = g.Id,
 					HomeTeamId = g.HomeTeamId,
@@ -70,9 +70,9 @@
             return games;
 		}
 
-		public async Task<IEnumerable<GameCardViewModel>> FilterByLeagueAndDate(int leagueId, DateTime date)
+		public async Task<IEnumerable<GameViewModel>> FilterByLeagueAndDate(int leagueId, DateTime date)
 		{
-			IEnumerable<GameCardViewModel> games = await AllAsync();
+			IEnumerable<GameViewModel> games = await AllAsync();
 			if (leagueId == -1)
 			{
 				games = games.Where(g => g.Start.Date == date.Date).ToList();

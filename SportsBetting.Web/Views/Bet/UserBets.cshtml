@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BetViewModel>
+@{
+	ViewBag.Title = "MY BETS";
+}
+<link rel="stylesheet" href="~/css/all_user_bets_layoutsheet.css" asp-append-version="true" />
+<h2>@ViewBag.Title</h2>
+<hr />
+<ul>
+    @foreach (var bet in Model)
+    {
+        <li>
+            @{
+                string betCardId = bet.IsWinning.ToString();
+            }
+            <div class="betCard" id="@betCardId">
+                <div class="betCard__content">
+                    <div class="gamesCount">@bet.Games.Count()</div>
+                    <p class="games">Games:</p>
+                    <p class="betAmount">@($"{bet.BetAmmount:f2}$")</p>
+                    <p class="bet">Bet:</p>
+                    <p class="possibleWin">@($"{(bet.BetAmmount * bet.Multiplier):f2}$")</p>
+                    <p class="pWin">Possible Win:</p>
+                    <a class="selectUserBet" asp-area="" asp-controller="Bet" asp-action="ShowSelectedBet" asp-route-data=@bet.Id></a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

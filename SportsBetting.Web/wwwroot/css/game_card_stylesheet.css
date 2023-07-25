@@ -16,7 +16,6 @@
     margin-right: 0px;
     width: 200px;
     height: 25px;
-/*    overflow: hidden;*/
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -106,9 +105,6 @@ a {
         color: #696969;
     }
 
-    /*.prediction-button:active {
-        scale: 0.95;
-    }*/
 
     .prediction-button:hover span:last-child {
         width: 150px;
@@ -175,12 +171,12 @@ ul {
 }
 
 li {
-    margin-bottom: 2px; /* Remove the default margin */
+    margin-bottom: 2px; 
     padding: 0;
 }
 
     li.LeagueLi {
-        margin-bottom: 2px; /* Remove the default margin */
+        margin-bottom: 2px; 
         width: 400px;
         height: 30px;
     }

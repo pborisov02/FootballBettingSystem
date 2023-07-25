@@ -1,0 +1,84 @@
+﻿.betCard {
+    width: 500px;
+    height: 100px;
+    border-radius: 16px;
+    padding: 5px;
+}
+
+#True {
+    background: green;
+}
+
+#False {
+    background: darkred;
+}
+
+.betCard__content {
+    background: dimgray;
+    border-radius: 17px;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.gamesCount {
+    position: relative;
+    left: 10px;
+    top: 40px;
+}
+
+.games {
+    position: relative;
+    left: 10px;
+    bottom: 50px;
+}
+
+.betAmount {
+    position: relative;
+    left: 144px;
+    bottom: 66px;
+}
+
+.bet {
+    position: relative;
+    left: 144px;
+    bottom: 172px;
+}
+
+.possibleWin {
+    position: relative;
+    left: 311px;
+    bottom: 188px;
+}
+
+
+.pWin {
+    position: relative;
+    left: 293px;
+    bottom: 294px;
+}
+
+a.selectUserBet {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: black;
+    position: relative;
+    bottom: 350px;
+}
+    a.selectUserBet:hover {
+        color: black;
+    }
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+}

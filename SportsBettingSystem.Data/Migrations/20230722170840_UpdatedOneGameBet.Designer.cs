@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsBettingSystem.Data;
 
@@ -11,9 +12,10 @@ using SportsBettingSystem.Data;
 namespace SportsBettingSystem.Web.Migrations
 {
     [DbContext(typeof(SportsBettingDbContext))]
-    partial class SportsBettingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230722170840_UpdatedOneGameBet")]
+    partial class UpdatedOneGameBet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 24, 2, 48, 34, 262, DateTimeKind.Utc).AddTicks(3794));
+                        .HasDefaultValue(new DateTime(2023, 7, 22, 17, 8, 40, 529, DateTimeKind.Utc).AddTicks(9561));
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -248,9 +250,6 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<decimal>("BetAmmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool>("IsDone")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsWinning")
                         .HasColumnType("bit");
 
@@ -259,6 +258,9 @@ namespace SportsBettingSystem.Web.Migrations
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("gamesFinished")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

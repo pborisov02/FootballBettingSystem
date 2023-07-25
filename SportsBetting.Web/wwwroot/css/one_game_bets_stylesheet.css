@@ -1,0 +1,176 @@
+﻿
+.betGameInput {
+    flex-direction: column;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 0px;
+    overflow: hidden;
+}
+
+.userBetInput {
+    display: flex;
+    width: 410px;
+    margin-left: 13px;
+    height: 70px;
+    margin-top:4px;
+}
+
+.oneGameBets {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: 10px;
+}
+
+.BetAmmountInput {
+    max-width: 175px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 7px 0 darkred;
+    outline: none;
+    color: #FFFFFF;
+    background: dimgrey;
+    position: relative;
+    bottom: 2px;
+    left: 0px;
+    height: 60px;
+}
+
+    .BetAmmountInput:invalid {
+        animation: justshake 0.4s forwards;
+        color: red;
+    }
+
+@keyframes justshake {
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX-(5px);
+    }
+}
+
+.betCard {
+    width: 400px;
+    height: 100px;
+    border-radius: 16px;
+    padding: 5px;
+    background: darkred;
+    color: darkred;
+}
+
+.betCard__content {
+    background: dimgray;
+    border-radius: 17px;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.MakeABetButton {
+    position: relative;
+    left: 40px;
+    bottom: 3px;
+    padding: 17px 40px;
+    color: black;
+    border-radius: 50px;
+    border: 0;
+    background-color: darkred;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all .5s ease;
+}
+
+.MakeABetButton:hover {
+    letter-spacing: 3px;
+    background-color: #008000;
+    color: hsl(0, 0%, 100%);
+}
+
+.MakeABetButton:active {
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: green;
+    transform: translateY(10px);
+    transition: 100ms;
+}
+
+.BetHomeTeam {
+    color: #8B0000;
+    position: relative;
+    left: 10px;
+    top: -89px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.BetAwayTeam {
+    color: #8B0000;
+    position: relative;
+    left: 10px;
+    top: -91px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.BetVs {
+    color: #000000;
+    position: relative;
+    left: 12px;
+    bottom: 171px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.BetMultiplier {
+    color: #8B0000;
+    position: relative;
+    left: 335px;
+    bottom: 195px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.BetTime {
+    color: #000000;
+    position: relative;
+    left: 230px;
+    bottom: 324px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+.BetDate {
+    color: #000000;
+    position: relative;
+    left: 229px;
+    bottom: 299px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+
+.layoutContainer {
+    display: flex;
+}
+.remove {
+    color: black;
+    background: darkred;
+    position: relative;
+    bottom: 407px;
+    left: 354px;
+    padding: 7px 15px;
+    font-size: 20px;
+}

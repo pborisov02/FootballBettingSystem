@@ -16,8 +16,7 @@ namespace SportsBettingSystem.Data.Models
         public bool IsWinning { get; set; }
         public decimal Multiplier { get; set; }
         public decimal BetAmmount { get; set; }
-
-        public bool gamesFinished { get; set; }
+        public bool IsDone { get; set; }
 
         [Required]
         public Guid UserId { get; set;}

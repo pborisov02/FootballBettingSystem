@@ -95,8 +95,9 @@
 					card.append('<p class="BetAwayTeam">' + game.awayTeam.name + '</p>');
 					card.append('<p class="BetVs">vs</p>');
 					card.append('<p class="BetMultiplier">' + multiplier.toFixed(2) + '</p>');
-					card.append('<p class="BetDateTime">' + game.start[5] + game.start[6] + '/' + game.start[8] + game.start[9] + ' - ' + game.startFormatted + '</p>');
-					card.append('<div></div>');
+					card.append('<p class="BetDate">' + game.start[5] + game.start[6] + '/' + game.start[8] + game.start[9] +'</p>');
+					card.append('<p class="BetTime">' + game.startFormatted + '</p>');
+					card.append('<button class="remove" value="' + game.id + '">X</button>');
 
 					listItem.append(card);
 					oneGamesList.append(listItem);
@@ -155,9 +156,7 @@
 				
 				for (let i = 0; i < modelData.length; i++) {
 					if (modelData[i].game.id == requestData.gameId) {
-						console.log(modelData);
 						modelData.splice(i, 1);
-						console.log(modelData);
 						break;
 					}
 				}
@@ -175,11 +174,28 @@
 					}
 				});
 			});
+
+			$('#oneGameBetsList').on('click', '.remove', function () {
+				var gameId = $(this).val();
+				for (let i = 0; i < modelData.length; i++) {
+					if (modelData[i].game.id == gameId) {
+						modelData.splice(i, 1);
+						break;
+					}
+				}
+				populateOneGamesBets(modelData);
+			});
 			$('.MakeABetButton').on('click', function () {
 				var betAmount = $('.BetAmmountInput').val();
-				if (!isValidBetAmount(betAmount)) {
+				var betAmountAsDec = parseFloat(betAmount)
+				if (!isValidBetAmount(betAmount) || betAmountAsDec<2.00 ) {
 					alert('Invalid bet amount. The bet ammount should be a number bigger than 2.00!.');
 					return; 
+				}
+				if(modelData.length < 1)
+				{
+					alert('Error! You have to select a game before making a bet!');
+					return;
 				}
 
 				$.ajax({
@@ -189,8 +205,12 @@
 						betAmount: betAmount,
 						oneGameBets: modelData 
 					},
-					success: function (response) {
-
+					success: function (data) {
+						 if (data == 0) {
+							alert("There was a problem creating your bet, please check if the selected games and the bet amount are valid.");
+						} else {
+							window.location.href = '/Bet/UserBets';
+    }
 					},
 					error: function () {
 						console.log('Error making the bet.');
@@ -199,7 +219,7 @@
 			});
 		});
 		function isValidBetAmount(amount) {
-			var regex = /^(?:[1-9]\d{0,4}|\d{1,4}\.\d{1,2})$/;
+			var regex = /^(\d{1,5}|\d{0,5}\.\d{1,2})$/;
 			return regex.test(amount);
 		}
 	</script>

@@ -10,8 +10,8 @@ namespace SportsBettingSystem.Web.ViewModels.Game
 	{
 		public GamesFilteredServiceModel()
 		{
-			this.Games = new HashSet<GameCardViewModel>();
+			this.Games = new HashSet<GameViewModel>();
 		}
-		public IEnumerable<GameCardViewModel> Games { get; set; }
+		public IEnumerable<GameViewModel> Games { get; set; }
 	}
 }
