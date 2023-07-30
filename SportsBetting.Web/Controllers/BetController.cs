@@ -5,7 +5,7 @@
     using SportsBettingSystem.Services.Interfaces;
     using SportsBettingSystem.Web.ViewModels.Bet;
 
-    public class BetController : Controller
+	public class BetController : Controller
 	{
 		private readonly IBetService betService;
 		public BetController(IBetService _betService)
@@ -34,6 +34,13 @@
 			IEnumerable<BetViewModel> bets = await betService.GetUserBetsAsync(userId);
 			return View(bets);
 
+		}
+
+		public async Task<IActionResult> ShowSelectedBet(Guid betId)
+		{
+			var betViewModel = await betService.GetUserBetAsync(betId);
+
+			return View(betViewModel);
 		}
 	}
 }

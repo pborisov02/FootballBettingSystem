@@ -20,7 +20,7 @@
                     <p class="bet">Bet:</p>
                     <p class="possibleWin">@($"{(bet.BetAmmount * bet.Multiplier):f2}$")</p>
                     <p class="pWin">Possible Win:</p>
-                    <a class="selectUserBet" asp-area="" asp-controller="Bet" asp-action="ShowSelectedBet" asp-route-data=@bet.Id></a>
+                    <a class="selectUserBet" asp-area="" asp-controller="Bet" asp-action="ShowSelectedBet" asp-route-betId=@bet.Id.ToString()></a>
                 </div>
             </div>
         </li>

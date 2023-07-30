@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsBettingSystem.Data;
 
@@ -11,9 +12,10 @@ using SportsBettingSystem.Data;
 namespace SportsBettingSystem.Web.Migrations
 {
     [DbContext(typeof(SportsBettingDbContext))]
-    partial class SportsBettingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230730022410_UpdateLeagueGameAndTeamEntititesv2.0")]
+    partial class UpdateLeagueGameAndTeamEntititesv20
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 30, 22, 8, 2, 924, DateTimeKind.Utc).AddTicks(8210));
+                        .HasDefaultValue(new DateTime(2023, 7, 30, 2, 24, 10, 373, DateTimeKind.Utc).AddTicks(6817));
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -273,9 +275,6 @@ namespace SportsBettingSystem.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AwayGoals")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("AwayOdd")
                         .HasColumnType("decimal(18,2)");
 
@@ -284,9 +283,6 @@ namespace SportsBettingSystem.Web.Migrations
 
                     b.Property<decimal>("DrawOdd")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("HomeGoals")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("HomeOdd")
                         .HasColumnType("decimal(18,2)");
@@ -324,9 +320,6 @@ namespace SportsBettingSystem.Web.Migrations
 
                     b.Property<Guid>("BetId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsWinning")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Prediction")
                         .HasColumnType("int");

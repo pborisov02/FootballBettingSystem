@@ -14,9 +14,5 @@
         [MaxLength(CountryNameMaxLength)]
 		public string Country { get; set; } = null!;
 
-        [Required]
-		[MinLength(LogoUrlMinLength)]
-        [MaxLength(LogoUrlMaxLength)]
-		public string LogoUrl { get; set; } = null!;
     }
 }

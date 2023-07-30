@@ -10,13 +10,17 @@ namespace SportsBettingSystem.Web.ViewModels.Game
 {
 	public class Game_BetViewModel
 	{
-		public Guid Id { get; set; }
 		public decimal HomeOdd { get; set; }
 		public decimal AwayOdd { get; set; }
 		public decimal DrawOdd { get; set; }
 		public TeamServiceModel HomeTeam { get; set; } = null!;
 		public TeamServiceModel AwayTeam { get; set; } = null!;
 		public LeagueServiceModel League { get; set; } = null!;
+		public bool isFinished { get; set; }
+
+		public int HomeGoals { get; set; }
+		public int AwayGoals { get; set; }
+		public int Result { get; set; }
 		public int Prediction { get; set; }
 		public decimal PredictionOdd { get 
 			{

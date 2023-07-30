@@ -1,0 +1,7 @@
+﻿@model GameUpdateServiceModel;
+<a class="card" asp-action="UpdateGame" asp-controller="Game" asp-route-gameId="@Model.Id">
+	<div class="home">@Model.HomeTeam.Name</div>
+	<div class="away">@Model.AwayTeam.Name</div>
+	<div class="vs">vs</div>
+	<div class="time">@Model.Start.ToString("HH:mm")</div>
+</a>

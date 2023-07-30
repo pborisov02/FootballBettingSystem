@@ -34,7 +34,10 @@
 				.HasForeignKey(gb => gb.BetId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
+            builder.Entity<Game>()
+                .HasOne(g => g.League)
+                .WithMany(l => l.Games)
+                .OnDelete(DeleteBehavior.Restrict);
 
 			builder.Entity<Team>()
                 .HasOne(t => t.League)
@@ -79,16 +82,14 @@
             {
                 Id = 1,
                 Name = "La Liga",
-                Country = "Spain",
-                LogoUrl = "https://content.sportslogos.net/leagues/thumbs/130.gif",
+                Country = "Spain"
             };
             leagues.Add(league);
             league = new League
             {
                 Id = 2,
                 Name = "Bundesliga",
-                Country = "Germany",
-                LogoUrl = "https://content.sportslogos.net/leagues/thumbs/132.gif",
+                Country = "Germany"
             };
             leagues.Add(league);
 
@@ -102,36 +103,28 @@
             {
                 Id = 1,
                 Name = "Barcelona",
-                BadgeUrl = "https://content.sportslogos.net/logos/130/4016/thumbs/hy5fvvdkee83gg3r5ym22zr5o.gif",
                 LeagueId = 1,
-                StadiumName = "Camp Nou"
             };
             teams.Add(team);
             team = new Team
             {
                 Id = 2,
                 Name = "Real Madrid",
-                BadgeUrl = "https://content.sportslogos.net/logos/130/4017/thumbs/yfhezt5oyr0jbq29u4hp50w63.gif",
                 LeagueId = 1,
-                StadiumName = "Santiago Bernabeu"
             };
             teams.Add(team);
             team = new Team
             {
                 Id = 3,
                 Name = "Bayern Munich",
-                BadgeUrl = "https://content.sportslogos.net/logos/132/4069/thumbs/rr72mhpas38h85jdw85neas5f.gif",
-                LeagueId = 2,
-                StadiumName = "Allianz Arena"
+                LeagueId = 2
             };
             teams.Add(team);
             team = new Team
             {
                 Id = 4,
                 Name = "Borussia Dortmund",
-                BadgeUrl = "https://content.sportslogos.net/logos/132/4072/thumbs/yfkihagcptzem3rhhf4h22343.gif",
-                LeagueId = 2,
-                StadiumName = "Signal Induna Park"
+                LeagueId = 2
             };
             teams.Add(team);
 

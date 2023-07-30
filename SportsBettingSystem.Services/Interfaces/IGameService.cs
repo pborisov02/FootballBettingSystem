@@ -12,6 +12,9 @@ namespace SportsBettingSystem.Services.Interfaces
         Task CreateAsync(GameFormModel leagueFormModel);
 		Task<IEnumerable<GameViewModel>> AllAsync();
         Task<IEnumerable<GameViewModel>> FilterByLeagueAndDate(int leagueId, DateTime date);
+        Task<GamesForUpdateQueryModel> AllForChangesAsync(GamesForUpdateQueryModel queryModel);
+        Task<GameUpdateServiceModel> GetGameForUpdateAsync(Guid gameId);
+        Task<bool> UpdateGameAsync(GameUpdateServiceModel gameUpdate);
 	}
     
 }

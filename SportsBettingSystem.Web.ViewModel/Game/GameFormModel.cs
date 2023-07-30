@@ -15,6 +15,9 @@
         public int AwayTeamId { get; set; }
 
         [Required]
+        public int LeagueId { get; set; }
+
+        [Required]
         [Display(Name = "Date and time the match starts")]
         [CustomDateTimeAtribute()]
         public DateTime Start { get; set; }

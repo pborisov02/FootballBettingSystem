@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsBettingSystem.Data;
 
@@ -11,9 +12,10 @@ using SportsBettingSystem.Data;
 namespace SportsBettingSystem.Web.Migrations
 {
     [DbContext(typeof(SportsBettingDbContext))]
-    partial class SportsBettingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230730015939_RemovedTitleFromGame")]
+    partial class RemovedTitleFromGame
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 30, 22, 8, 2, 924, DateTimeKind.Utc).AddTicks(8210));
+                        .HasDefaultValue(new DateTime(2023, 7, 30, 1, 59, 39, 318, DateTimeKind.Utc).AddTicks(1993));
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -273,9 +275,6 @@ namespace SportsBettingSystem.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AwayGoals")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("AwayOdd")
                         .HasColumnType("decimal(18,2)");
 
@@ -285,16 +284,10 @@ namespace SportsBettingSystem.Web.Migrations
                     b.Property<decimal>("DrawOdd")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("HomeGoals")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("HomeOdd")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("HomeTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LeagueId")
                         .HasColumnType("int");
 
                     b.Property<int>("Result")
@@ -312,8 +305,6 @@ namespace SportsBettingSystem.Web.Migrations
 
                     b.HasIndex("HomeTeamId");
 
-                    b.HasIndex("LeagueId");
-
                     b.ToTable("Games");
                 });
 
@@ -324,9 +315,6 @@ namespace SportsBettingSystem.Web.Migrations
 
                     b.Property<Guid>("BetId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsWinning")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Prediction")
                         .HasColumnType("int");
@@ -351,6 +339,11 @@ namespace SportsBettingSystem.Web.Migrations
                         .HasMaxLength(56)
                         .HasColumnType("nvarchar(56)");
 
+                    b.Property<string>("LogoUrl")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -365,12 +358,14 @@ namespace SportsBettingSystem.Web.Migrations
                         {
                             Id = 1,
                             Country = "Spain",
+                            LogoUrl = "https://content.sportslogos.net/leagues/thumbs/130.gif",
                             Name = "La Liga"
                         },
                         new
                         {
                             Id = 2,
                             Country = "Germany",
+                            LogoUrl = "https://content.sportslogos.net/leagues/thumbs/132.gif",
                             Name = "Bundesliga"
                         });
                 });
@@ -383,10 +378,20 @@ namespace SportsBettingSystem.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("BadgeUrl")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
                     b.Property<int>("LeagueId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("StadiumName")
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
@@ -401,26 +406,34 @@ namespace SportsBettingSystem.Web.Migrations
                         new
                         {
                             Id = 1,
+                            BadgeUrl = "https://content.sportslogos.net/logos/130/4016/thumbs/hy5fvvdkee83gg3r5ym22zr5o.gif",
                             LeagueId = 1,
-                            Name = "Barcelona"
+                            Name = "Barcelona",
+                            StadiumName = "Camp Nou"
                         },
                         new
                         {
                             Id = 2,
+                            BadgeUrl = "https://content.sportslogos.net/logos/130/4017/thumbs/yfhezt5oyr0jbq29u4hp50w63.gif",
                             LeagueId = 1,
-                            Name = "Real Madrid"
+                            Name = "Real Madrid",
+                            StadiumName = "Santiago Bernabeu"
                         },
                         new
                         {
                             Id = 3,
+                            BadgeUrl = "https://content.sportslogos.net/logos/132/4069/thumbs/rr72mhpas38h85jdw85neas5f.gif",
                             LeagueId = 2,
-                            Name = "Bayern Munich"
+                            Name = "Bayern Munich",
+                            StadiumName = "Allianz Arena"
                         },
                         new
                         {
                             Id = 4,
+                            BadgeUrl = "https://content.sportslogos.net/logos/132/4072/thumbs/yfkihagcptzem3rhhf4h22343.gif",
                             LeagueId = 2,
-                            Name = "Borussia Dortmund"
+                            Name = "Borussia Dortmund",
+                            StadiumName = "Signal Induna Park"
                         });
                 });
 
@@ -500,17 +513,9 @@ namespace SportsBettingSystem.Web.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SportsBettingSystem.Data.Models.League", "League")
-                        .WithMany("Games")
-                        .HasForeignKey("LeagueId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("AwayTeam");
 
                     b.Navigation("HomeTeam");
-
-                    b.Navigation("League");
                 });
 
             modelBuilder.Entity("SportsBettingSystem.Data.Models.GameBet", b =>
@@ -560,8 +565,6 @@ namespace SportsBettingSystem.Web.Migrations
 
             modelBuilder.Entity("SportsBettingSystem.Data.Models.League", b =>
                 {
-                    b.Navigation("Games");
-
                     b.Navigation("Teams");
                 });
 

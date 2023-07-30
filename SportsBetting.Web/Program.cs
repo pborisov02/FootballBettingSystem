@@ -1,7 +1,6 @@
 namespace SportsBetting.Web
 {
     using Microsoft.EntityFrameworkCore;
-	using Microsoft.IdentityModel.Tokens;
 
 	using SportsBettingSystem.Data;
 	using SportsBettingSystem.Data.Models;

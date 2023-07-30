@@ -16,9 +16,11 @@
     public class BetService : IBetService
 	{
 		private readonly SportsBettingDbContext _db;
-		public BetService(SportsBettingDbContext dbContext)
+		private readonly IAccountService accountService;
+		public BetService(SportsBettingDbContext dbContext, IAccountService accountService)
 		{
 			this._db = dbContext;
+			this.accountService = accountService;
 		}
 
 		public async Task<bool> CreateBetAsync(List<OneGameBetServiceModel> oneGameBets, decimal ammount, Guid userId)
@@ -76,8 +78,6 @@
 					Name = awayTeam.Name,
 					LeagueId = awayTeam.LeagueId
 				},
-				AwayTeamId = game.AwayTeam.Id,
-				HomeTeamId = game.HomeTeam.Id,
 				Start = game.Start,
 				League = new LeagueServiceModel()
 			};
@@ -100,7 +100,39 @@
 			return oneGameBetService;
 		}
 
-		public async Task<IEnumerable<BetViewModel>> GetUserBetsAsync(Guid userId)
+        public async Task<BetViewModel> GetUserBetAsync(Guid betId)
+        {
+			Bet b = await _db.Bets.FindAsync(betId);
+
+			BetViewModel betViewModel = new()
+			{
+				Id = b.Id,
+				IsWinning = b.IsWinning,
+				Multiplier = b.Multiplier,
+				BetAmmount = b.BetAmmount,
+				Games = b.GameBets.Select(gb => new Game_BetViewModel
+				{
+					HomeTeam = new TeamServiceModel
+					{
+						Id = gb.Game.HomeTeamId,
+						Name = gb.Game.HomeTeam.Name
+					},
+					AwayTeam = new TeamServiceModel
+					{
+						Id = gb.Game.AwayTeamId,
+						Name = gb.Game.AwayTeam.Name
+					},
+					Start = gb.Game.Start,
+					Prediction = gb.Prediction,
+					HomeOdd = gb.Game.HomeOdd,
+					DrawOdd = gb.Game.DrawOdd,
+					AwayOdd = gb.Game.AwayOdd
+				})
+			};
+			return betViewModel;
+        }
+
+        public async Task<IEnumerable<BetViewModel>> GetUserBetsAsync(Guid userId)
 		{
 			List<BetViewModel> bets =  await _db.Bets.Where(b => b.UserId == userId).Select( b => new BetViewModel
 			{
@@ -110,7 +142,6 @@
 				BetAmmount= b.BetAmmount,
 				Games = b.GameBets.Select(gb => new Game_BetViewModel
 				{
-					Id = gb.Game.Id,
 					HomeTeam = new TeamServiceModel
 					{
 						Id = gb.Game.HomeTeamId,
@@ -130,6 +161,27 @@
 			}).ToListAsync();
 
 			return bets;
+		}
+
+		public async Task UpdateBetsAsync(Guid gameId)
+		{
+			var bets = await _db.Bets.Where(b => b.GameBets.Any(gb => gb.GameId == gameId)
+			&& b.GameBets.All(gb => gb.Game.isFinished) 
+			&& !b.IsDone)
+			.ToListAsync();
+			if (bets != null)
+			{
+				foreach (var bet in bets)
+				{
+					if(bet.GameBets.All(gb => gb.IsWinning))
+					{
+						bet.IsDone = true;
+						bet.IsWinning = true;
+						decimal winning = bet.Multiplier * bet.BetAmmount;
+						await accountService.UpdateUserWallet(bet.UserId, winning);
+					}
+				}
+			}
 		}
 	}
 }

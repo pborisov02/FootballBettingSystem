@@ -27,7 +27,6 @@ namespace SportsBettingSystem.Services
 			{
 				Name = leagueFormModel.Name,
 				Country = leagueFormModel.Country,
-				LogoUrl = leagueFormModel.LogoUrl
 			});
 
 			await _db.SaveChangesAsync();
@@ -41,5 +40,10 @@ namespace SportsBettingSystem.Services
 					Name = l.Name
 				}).ToListAsync();
 		}
-	}
+
+        public async Task<IEnumerable<string>> AllLeaguesNamesAsync()
+        {
+            return await _db.Leagues.Select(l => l.Name).ToListAsync();
+        }
+    }
 }

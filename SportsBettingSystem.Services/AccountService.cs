@@ -40,5 +40,12 @@ namespace SportsBettingSystem.Services
 		{
 			return await dbContext.Users.AsNoTracking().FirstAsync(u => u.Id == Guid.Parse(userId));
 		}
+
+		public async Task UpdateUserWallet(Guid userId, decimal winning)
+		{
+            ApplicationUser user = await dbContext.Users.FirstAsync(u => u.Id == userId);
+            user.WalletBallance += winning;
+            await dbContext.SaveChangesAsync();
+		}
 	}
 }

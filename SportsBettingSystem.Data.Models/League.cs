@@ -10,6 +10,7 @@
         public League()
         {
             this.Teams = new HashSet<Team>();
+            this.Games= new HashSet<Game>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,17 +18,14 @@
 
         [Required]
         [MaxLength(30)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        [Required]
+		[Required]
         [MaxLength(CountryNameMaxLength)]
         public string Country { get; set; } = null!;
 
-        [Required]
-        [MaxLength(LogoUrlMaxLength)]
-        public string LogoUrl { get; set; } = null!;
-
         public virtual ICollection<Team> Teams { get; set; }
+		public virtual ICollection<Game> Games { get; set; }
 
-    }
+	}
 }

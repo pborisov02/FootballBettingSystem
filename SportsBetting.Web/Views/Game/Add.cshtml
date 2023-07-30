@@ -32,14 +32,14 @@
 			<span asp-validation-for="Start" class="small text-danger"></span>
 		</div>
 			<div class="form-group">
-				<label ></label>
-				<select id="leagueDropdown" class="form-control">
+			<label asp-for="LeagueId"></label>
+			<select id="leagueDropdown" asp-for="LeagueId" class="form-control">
 				@foreach (var league in Model.Leagues!)
 					{
 						<option value="@league.Id">@league.Name</option>
 					}
 			</select>
-				<span class="small text-danger"></span>
+			<span asp-validation-for="LeagueId" class="small text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="HomeTeamId"></label>
@@ -62,10 +62,6 @@
 				<span asp-validation-for="AwayTeamId" class="small text-danger"></span>
 			</div>
 			<div class="text-center">
-			@{
-				Model.Leagues = (ICollection<LeagueServiceModel>)ViewData["Leagues"]!;
-				Model.Teams = (ICollection<TeamServiceModel>)ViewData["Teams"]!;
-			}
 				<input class="btn btn-primary mt-3" type="submit" value="Create" />
 			</div>
 		</form>

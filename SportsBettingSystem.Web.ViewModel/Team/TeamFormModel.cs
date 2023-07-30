@@ -13,17 +13,6 @@
 		public string Name { get; set; } = null!;
 
 		[Required]
-		[MinLength(BadgeUrlMinLength)]
-		[MaxLength(BadgeUrlMaxLength)]
-		public string BadgeUrl { get; set; } = null!;
-
-		[Required]
-		[MinLength(StadiumNameMinLength)]
-		[MaxLength(StadiumNameMaxLength)]
-		[Display(Name = "Stadium Name")]
-		public string StadiumName { get; set; } = null!;
-
-		[Required]
 		[Display(Name = "League")]
 		public int LeagueId { get; set; }
 

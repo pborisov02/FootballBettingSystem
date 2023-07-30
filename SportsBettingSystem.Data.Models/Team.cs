@@ -19,26 +19,16 @@
         public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength(BadgeUrlMaxLength)]
-        public string BadgeUrl { get; set; } = null!;
-       
-        [Required]
-        [MaxLength(StadiumNameMaxLength)]
-        public string StadiumName { get; set; } = null!;
-
-        [Required]
+        [ForeignKey(nameof(League))]
         public int LeagueId { get; set; }
 
 
         [Required]
-        public virtual League League { get; set; }
+        public virtual League League { get; set; } = null!;
 
 
-        public virtual ICollection<Game> HomeGames { get; set; }
+		public virtual ICollection<Game> HomeGames { get; set; }
 
         public virtual ICollection<Game> AwayGames { get; set; }
-
-
-
     }
 }

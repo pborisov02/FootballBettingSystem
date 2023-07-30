@@ -12,5 +12,6 @@ namespace SportsBettingSystem.Services.Interfaces
 	{
 		Task CreateAsync(LeagueFormModel leagueFormModel);
 		Task<IEnumerable<LeagueServiceModel>> AllLeaguesAsync();
-	}
+        Task<IEnumerable<string>> AllLeaguesNamesAsync();
+    }
 }

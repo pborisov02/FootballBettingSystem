@@ -6,6 +6,6 @@
     {
         Task<AccountViewModel> DisplayAccountInfo(Guid userId);
         Task<ApplicationUser> GetUser(string userId);
-
+        Task UpdateUserWallet(Guid userId, decimal winning);
     }
 }

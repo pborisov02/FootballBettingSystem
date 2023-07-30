@@ -21,8 +21,6 @@
 			var team = new Team()
 			{
 				Name = model.Name,
-				BadgeUrl = model.BadgeUrl,
-				StadiumName = model.StadiumName,
 				LeagueId = model.LeagueId
 			};
 
