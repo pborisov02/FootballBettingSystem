@@ -20,7 +20,12 @@ namespace SportsBettingSystem.Services
         {
             this.dbContext = dbContext;
         }
-        public async Task<AccountViewModel> DisplayAccountInfo(Guid userId)
+        /// <summary>
+        /// Returns the viewmodel with the account info for the account that matches the id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<AccountViewModel> AccountInfo(Guid userId)
         {
 
             ApplicationUser user = await dbContext.Users.AsNoTracking().FirstAsync(u => u.Id == userId);
@@ -36,11 +41,22 @@ namespace SportsBettingSystem.Services
             return accountViewModel;
         }
 
+        /// <summary>
+        /// Returns the user that matches the given id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
 		public async Task<ApplicationUser> GetUser(string userId)
 		{
 			return await dbContext.Users.AsNoTracking().FirstAsync(u => u.Id == Guid.Parse(userId));
 		}
 
+        /// <summary>
+        /// Updates the wallet ballance of the user that matches the given id by adding the winning ammount to it's wallet
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="winning"></param>
+        /// <returns></returns>
 		public async Task UpdateUserWallet(Guid userId, decimal winning)
 		{
             ApplicationUser user = await dbContext.Users.FirstAsync(u => u.Id == userId);

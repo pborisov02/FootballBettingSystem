@@ -96,6 +96,7 @@
 			return Json(filteredGames);
 		}
 
+		[HttpGet]
 		public async Task<IActionResult> ShowGamesForUpdate([FromQuery] GamesForUpdateQueryModel queryModel, int currentPage)
 		{
 			queryModel.CurrentPage = currentPage;

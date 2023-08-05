@@ -1,17 +1,18 @@
 namespace SportsBetting.Web
 {
-    using Microsoft.EntityFrameworkCore;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.EntityFrameworkCore;
 
 	using SportsBettingSystem.Data;
 	using SportsBettingSystem.Data.Models;
 	using SportsBettingSystem.Services;
-	using SportsBettingSystem.Services.Interfaces;
 	using SportsBettingSystem.Web.Infrastructure.Extensions;
 	using SportsBettingSystem.Web.Infrastructure.ModelBinders;
 
 
 
-    public class Program
+	public class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -32,16 +33,28 @@ namespace SportsBetting.Web
 				options.Password.RequireNonAlphanumeric = false;
 				options.Password.RequiredLength = 1;
 			})
+				.AddRoles<IdentityRole<Guid>>()
 				.AddEntityFrameworkStores<SportsBettingDbContext>();
 			builder.Services.AddControllersWithViews();
-            
+			builder.Services.AddAntiforgery(optiions =>
+			{
+				optiions.FormFieldName= "_-RequestVerificationToken";
+				optiions.HeaderName = "X-CSRF-VERIFICATION-TOKEN";
+				optiions.SuppressXFrameOptionsHeader = false;
+			});
+
 			builder.Services
                 .AddControllersWithViews()
                 .AddMvcOptions(options =>
                 {
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+					options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+					options.EnableEndpointRouting = false;
                 });
-
+			builder.Services.ConfigureApplicationCookie(options =>
+			{
+				options.LoginPath = "/Account/Login";
+			});
             builder.Services.AddApplicationServices(typeof(AccountService));
             WebApplication app = builder.Build();
 
@@ -65,10 +78,17 @@ namespace SportsBetting.Web
 			app.UseAuthentication();
 			app.UseAuthorization();
 
-			app.MapDefaultControllerRoute();
-			app.MapRazorPages();
+			app.SeedAdministrator("admin@sporstbetting.com");
 
-			app.Run();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+            });
+
+            app.Run();
 		}
 	}
 }

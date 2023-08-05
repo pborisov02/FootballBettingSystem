@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Web.Vie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Web.Infrastructure", "SportBettingSystem.Web.Infrastructure\SportsBettingSystem.Web.Infrastructure.csproj", "{C24FCEE7-AF55-43EE-8304-5798B8A73364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBettingSystem.Services", "SportsBettingSystem.Services\SportsBettingSystem.Services.csproj", "{39C37614-E817-4D79-8DB1-549719204365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Services", "SportsBettingSystem.Services\SportsBettingSystem.Services.csproj", "{39C37614-E817-4D79-8DB1-549719204365}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{71E85578-988E-4723-A9DE-B6975B232A74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBettingSystem.Web.CustomAttributes", "SportsBettingSystem.Web.CustomAttributes\SportsBettingSystem.Web.CustomAttributes.csproj", "{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{39C37614-E817-4D79-8DB1-549719204365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39C37614-E817-4D79-8DB1-549719204365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39C37614-E817-4D79-8DB1-549719204365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{E860C67A-3B2D-4875-B3E6-B184A5E50B4B} = {A7BE01A4-8CDF-4235-BB29-60EC7B1D6648}
 		{C24FCEE7-AF55-43EE-8304-5798B8A73364} = {A7BE01A4-8CDF-4235-BB29-60EC7B1D6648}
 		{39C37614-E817-4D79-8DB1-549719204365} = {71E85578-988E-4723-A9DE-B6975B232A74}
+		{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7} = {A7BE01A4-8CDF-4235-BB29-60EC7B1D6648}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD9A894F-B038-4389-8903-9385C3C05E12}

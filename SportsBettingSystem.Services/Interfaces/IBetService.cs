@@ -7,7 +7,7 @@
 		Task<OneGameBetServiceModel> CreateOneGameBetsAsync(string gameId, int prediction);
 		Task<bool> CreateBetAsync(List<OneGameBetServiceModel> oneGameBets, decimal ammount, Guid userId);
 		Task<IEnumerable<BetViewModel>> GetUserBetsAsync(Guid userId);
-		Task<BetViewModel> GetUserBetAsync(Guid betId);
+		Task<BetViewModel> GetUserBetAsync(Guid betId, Guid userId);
 		Task UpdateBetsAsync(Guid gameId);
 	}
 }

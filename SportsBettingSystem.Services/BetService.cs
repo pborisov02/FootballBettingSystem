@@ -22,7 +22,13 @@
 			this._db = dbContext;
 			this.accountService = accountService;
 		}
-
+		/// <summary>
+		/// Creates a bet and saves it in the database
+		/// </summary>
+		/// <param name="oneGameBets"></param>
+		/// <param name="ammount"></param>
+		/// <param name="userId"></param>
+		/// <returns></returns>
 		public async Task<bool> CreateBetAsync(List<OneGameBetServiceModel> oneGameBets, decimal ammount, Guid userId)
 		{
 			var user = await _db.Users.FirstAsync(u => u.Id == userId);
@@ -53,7 +59,12 @@
 			return true;
 
 		}
-
+		/// <summary>
+		/// Creates a one game bet, one bet can have many one game bets
+		/// </summary>
+		/// <param name="gameId"></param>
+		/// <param name="prediction"></param>
+		/// <returns></returns>
 		public async Task<OneGameBetServiceModel> CreateOneGameBetsAsync(string gameId, int prediction)
 		{
 			decimal multiplier = 1;
@@ -100,11 +111,26 @@
 			return oneGameBetService;
 		}
 
-        public async Task<BetViewModel> GetUserBetAsync(Guid betId)
+		/// <summary>
+		/// Returns a single bet that matches the bet Id and checks if the userId matches the bet.UserId
+		/// </summary>
+		/// <param name="betId"></param>
+		/// <param name="userId"></param>
+		/// <returns></returns>
+		/// <exception cref="AccessViolationException"></exception>
+        public async Task<BetViewModel> GetUserBetAsync(Guid betId, Guid userId)
         {
-			Bet b = await _db.Bets.FindAsync(betId);
+			var bet = await _db.Bets.FindAsync(betId);
+			if (bet.UserId != userId)
+				throw new AccessViolationException();
 
-			BetViewModel betViewModel = new()
+			BetViewModel betViewModel = await _db.Bets
+			.Include(b => b.GameBets)
+			.ThenInclude(gb => gb.Game.HomeTeam)
+            .Include(b => b.GameBets)
+            .ThenInclude(gb => gb.Game.AwayTeam)
+            .Where(b => b.Id == betId)
+			.Select(b => new BetViewModel
 			{
 				Id = b.Id,
 				IsWinning = b.IsWinning,
@@ -114,12 +140,12 @@
 				{
 					HomeTeam = new TeamServiceModel
 					{
-						Id = gb.Game.HomeTeamId,
+						Id = gb.Game.HomeTeam.Id,
 						Name = gb.Game.HomeTeam.Name
 					},
 					AwayTeam = new TeamServiceModel
 					{
-						Id = gb.Game.AwayTeamId,
+						Id = gb.Game.AwayTeam.Id,
 						Name = gb.Game.AwayTeam.Name
 					},
 					Start = gb.Game.Start,
@@ -128,11 +154,20 @@
 					DrawOdd = gb.Game.DrawOdd,
 					AwayOdd = gb.Game.AwayOdd
 				})
-			};
-			return betViewModel;
-        }
+			})
+			.FirstOrDefaultAsync();
 
-        public async Task<IEnumerable<BetViewModel>> GetUserBetsAsync(Guid userId)
+            return betViewModel!;
+        }
+		/// <summary>
+		/// Returns every bet that the user with the given id has
+		/// </summary>
+		/// <param name="betId"></param>
+		/// <param name="userId"></param>
+		/// <returns></returns>
+		/// <exception cref="AccessViolationException"></exception>
+
+		public async Task<IEnumerable<BetViewModel>> GetUserBetsAsync(Guid userId)
 		{
 			List<BetViewModel> bets =  await _db.Bets.Where(b => b.UserId == userId).Select( b => new BetViewModel
 			{
@@ -163,6 +198,11 @@
 			return bets;
 		}
 
+		/// <summary>
+		/// Updates every bet that has a game matching the given gameId
+		/// </summary>
+		/// <param name="gameId"></param>
+		/// <returns></returns>
 		public async Task UpdateBetsAsync(Guid gameId)
 		{
 			var bets = await _db.Bets.Where(b => b.GameBets.Any(gb => gb.GameId == gameId)
@@ -173,13 +213,15 @@
 			{
 				foreach (var bet in bets)
 				{
-					if(bet.GameBets.All(gb => gb.IsWinning))
+                    bet.IsDone = true;
+					if (bet.GameBets.All(gb => gb.IsWinning))
 					{
-						bet.IsDone = true;
 						bet.IsWinning = true;
 						decimal winning = bet.Multiplier * bet.BetAmmount;
 						await accountService.UpdateUserWallet(bet.UserId, winning);
 					}
+					else
+						bet.IsWinning = false;
 				}
 			}
 		}

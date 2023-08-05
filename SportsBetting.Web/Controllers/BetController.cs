@@ -2,7 +2,8 @@
 {
     using System.Security.Claims;
     using Microsoft.AspNetCore.Mvc;
-    using SportsBettingSystem.Services.Interfaces;
+    
+	using SportsBettingSystem.Services.Interfaces;
     using SportsBettingSystem.Web.ViewModels.Bet;
 
 	public class BetController : Controller
@@ -38,9 +39,16 @@
 
 		public async Task<IActionResult> ShowSelectedBet(Guid betId)
 		{
-			var betViewModel = await betService.GetUserBetAsync(betId);
-
-			return View(betViewModel);
+            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+			try
+			{
+				var betViewModel = await betService.GetUserBetAsync(betId, userId);
+                return View(betViewModel);
+            }
+			catch (Exception)
+			{
+				return View("Error403");
+			}
 		}
 	}
 }

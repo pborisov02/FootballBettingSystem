@@ -1,10 +1,9 @@
 ﻿namespace SportsBettingSystem.Web.ViewModels.Game
 {
-    using System.ComponentModel.DataAnnotations;
-    
+    using SportsBettingSystem.Web.CustomAttributes;
     using SportsBettingSystem.Web.ViewModels.League;
     using SportsBettingSystem.Web.ViewModels.Team;
-    using SportsBettingSystem.Web.Infrastructure.Extensions;
+    using System.ComponentModel.DataAnnotations;
 
     public class GameFormModel
     {

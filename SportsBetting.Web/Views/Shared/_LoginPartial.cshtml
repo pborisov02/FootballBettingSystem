@@ -10,8 +10,8 @@
      <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
          <div class="dropdown-menu">
-            <a class ="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Info">Account Info</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Bet" asp-action="UserBets">Account Info</a>
+            <a class ="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Info">My account</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Bet" asp-action="UserBets">My bets</a>
              <div class="dropdown-divider"></div>
                 <p>&nbsp Bank:</p>
                 <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Deposit">Deposit</a>
@@ -20,7 +20,7 @@
      </li>
 
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.FindFirst("FirstName")!.Value</a>
     </li>
  
     <li class="nav-item">
@@ -32,10 +32,10 @@
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
     </li>
 }
 </ul>

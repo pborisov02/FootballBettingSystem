@@ -1,13 +1,15 @@
 ﻿@model GameServiceModel;
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
 	ViewBag.Title = "Games";
+	var requestToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 <link rel="stylesheet" href="~/css/game_card_stylesheet.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/one_game_bets_stylesheet.css" asp-append-version="true" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <h2>@ViewBag.Title</h2>
 <hr />
-
+<input id ="__RequestVerificationToken" type="hidden" value="@requestToken"/>
 <partial name="_GamesFilterPartial" model="@Model" />
 <div class="layoutContainer">
 <div>
@@ -192,6 +194,9 @@
 					data: {
 						betAmount: betAmount,
 						oneGameBets: modelData 
+					},
+					headers: {
+						"X-CSRF-VERIFICATION-TOKEN": $('#__RequestVerificationToken').val()
 					},
 					success: function (data) {
 						 if (data == 0) {

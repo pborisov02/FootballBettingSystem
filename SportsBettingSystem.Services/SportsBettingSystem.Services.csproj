@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SportBettingSystem.Web.Infrastructure\SportsBettingSystem.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Common\SportsBettingSystem.Common.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Data.Models\SportsBettingSystem.Data.Models.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Data\SportsBettingSystem.Data.csproj" />

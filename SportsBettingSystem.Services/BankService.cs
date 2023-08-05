@@ -17,7 +17,13 @@ namespace SportsBettingSystem.Services
 		{
 			_db = db;
 		}
-
+		/// <summary>
+		/// Adds the deposit to the user's wallet ballance
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <param name="deposit"></param>
+		/// <returns></returns>
+		/// <exception cref="InvalidOperationException"></exception>
 		public async Task AddDepositAsync(string userId, decimal deposit)
 		{
 			ApplicationUser? user = await _db.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(userId));
@@ -31,6 +37,13 @@ namespace SportsBettingSystem.Services
 			await _db.SaveChangesAsync();
 		}
 
+		/// <summary>
+		/// Withdraws the ammount of the user's wallet
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <param name="ammount"></param>
+		/// <returns></returns>
+		/// <exception cref="InvalidOperationException"></exception>
 		public async Task WithdrawAsync(Guid userId, decimal ammount)
 		{
 			ApplicationUser? user = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId);
