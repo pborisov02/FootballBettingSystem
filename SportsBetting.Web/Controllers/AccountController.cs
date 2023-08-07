@@ -8,6 +8,7 @@ using SportsBettingSystem.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using SportsBettingSystem.Data.Models;
 using Microsoft.AspNetCore.Authentication;
+using Griesoft.AspNetCore.ReCaptcha;
 
 namespace SportsBettingSystem.Web.Controllers
 {
@@ -39,6 +40,8 @@ namespace SportsBettingSystem.Web.Controllers
        
         [HttpPost]
         [AllowAnonymous]
+        [ValidateRecaptcha(Action = nameof(Register),
+            ValidationFailedAction = ValidationFailedAction.ContinueRequest)]
         public async Task<IActionResult> Register(RegisterFormModel model)
         {
             if (!ModelState.IsValid)

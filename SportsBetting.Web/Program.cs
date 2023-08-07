@@ -24,26 +24,31 @@ namespace SportsBetting.Web
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("SportsBettingSystem.Data")));
 
 
-			builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-			{
-				options.SignIn.RequireConfirmedAccount = false;
-				options.Password.RequireDigit = false;
-				options.Password.RequireLowercase = false;
-				options.Password.RequireUppercase = false;
-				options.Password.RequireNonAlphanumeric = false;
-				options.Password.RequiredLength = 1;
-			})
+			builder.Services
+				.AddDefaultIdentity<ApplicationUser>(options =>
+				{
+					options.SignIn.RequireConfirmedAccount = false;
+					options.Password.RequireDigit = false;
+					options.Password.RequireLowercase = false;
+					options.Password.RequireUppercase = false;
+					options.Password.RequireNonAlphanumeric = false;
+					options.Password.RequiredLength = 1;
+				})
 				.AddRoles<IdentityRole<Guid>>()
 				.AddEntityFrameworkStores<SportsBettingDbContext>();
+			
 			builder.Services.AddControllersWithViews();
+			
 			builder.Services.AddAntiforgery(optiions =>
 			{
 				optiions.FormFieldName= "_-RequestVerificationToken";
 				optiions.HeaderName = "X-CSRF-VERIFICATION-TOKEN";
 				optiions.SuppressXFrameOptionsHeader = false;
 			});
+            
+			builder.Services.AddRecaptchaService();
 
-			builder.Services
+            builder.Services
                 .AddControllersWithViews()
                 .AddMvcOptions(options =>
                 {
@@ -51,12 +56,17 @@ namespace SportsBetting.Web
 					options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
 					options.EnableEndpointRouting = false;
                 });
+
 			builder.Services.ConfigureApplicationCookie(options =>
 			{
 				options.LoginPath = "/Account/Login";
+				options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+				options.Cookie.SameSite = SameSiteMode.None; 
 			});
-            builder.Services.AddApplicationServices(typeof(AccountService));
-            WebApplication app = builder.Build();
+
+			builder.Services.AddApplicationServices(typeof(AccountService));
+           
+			WebApplication app = builder.Build();
 
 			if (app.Environment.IsDevelopment())
 			{
@@ -78,7 +88,7 @@ namespace SportsBetting.Web
 			app.UseAuthentication();
 			app.UseAuthorization();
 
-			app.SeedAdministrator("admin@sporstbetting.com");
+			app.SeedAdministrator("admin@sportsbetting.com");
 
             app.UseEndpoints(endpoints =>
             {

@@ -5,6 +5,7 @@
     {
         public GameViewModel Game { get; set; } = null!;
         public int Prediction { get; set; }
-        public decimal Multiplier { get; set; }
+        public string PredictionString { get; set; } = null!;
+		public decimal Multiplier { get; set; }
     }
 }

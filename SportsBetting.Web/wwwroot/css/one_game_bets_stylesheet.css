@@ -10,11 +10,10 @@
 }
 
 .userBetInput {
-    display: flex;
     width: 410px;
+    height: 140px;
     margin-left: 13px;
-    height: 70px;
-    margin-top:4px;
+    margin-top: 4px;
 }
 
 .oneGameBets {
@@ -62,7 +61,7 @@
 }
 
 .betCard {
-    width: 400px;
+    width: 280px;
     height: 100px;
     border-radius: 16px;
     padding: 5px;
@@ -81,8 +80,8 @@
 
 .MakeABetButton {
     position: relative;
-    left: 40px;
-    bottom: 3px;
+    left: -3px;
+    bottom: -7px;
     padding: 17px 40px;
     color: black;
     border-radius: 50px;
@@ -138,7 +137,7 @@
 .BetMultiplier {
     color: #8B0000;
     position: relative;
-    left: 335px;
+    left: 216px;
     bottom: 195px;
     font-size: 24px;
     font-weight: bolder;
@@ -147,20 +146,26 @@
 .BetTime {
     color: #000000;
     position: relative;
-    left: 230px;
-    bottom: 324px;
+    left: 100px;
+    bottom: 326px;
     font-size: 24px;
     font-weight: bolder;
 }
 .BetDate {
     color: #000000;
     position: relative;
-    left: 229px;
-    bottom: 299px;
+    left: 100px;
+    bottom: 297px;
     font-size: 24px;
     font-weight: bolder;
 }
-
+.prediction {
+    position: relative;
+    bottom: 393px;
+    left: 100px;
+    font-size: 22px;
+    font-weight: bolder;
+}
 
 .layoutContainer {
     display: flex;
@@ -170,7 +175,7 @@
     background: darkred;
     position: relative;
     bottom: 407px;
-    left: 354px;
+    left: 234px;
     padding: 7px 15px;
     font-size: 20px;
 }

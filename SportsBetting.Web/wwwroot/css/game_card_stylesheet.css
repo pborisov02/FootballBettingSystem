@@ -1,6 +1,6 @@
 ﻿.card {
     font-size: 22px;
-    width: 700px;
+    width: 600px;
     height: 100px;
     background: dimgrey;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -35,7 +35,7 @@
 
 .time {
     position: relative;
-    left: 245px;
+    left: 143px;
     bottom: 15px;
     color: #000000;
 }
@@ -114,19 +114,19 @@ a {
 
 #home {
     position: relative;
-    left: 380px;
+    left: 259px;
     bottom: 75px;
 }
 
 #draw {
     position: relative;
-    left: 489px;
+    left: 362px;
     bottom: 99px;
 }
 
 #away {
     position: relative;
-    left: 592px;
+    left: 467px;
     bottom: 123px;
 }
 
@@ -152,7 +152,7 @@ a {
 
 .league {
     font-size: 22px;
-    width: 700px;
+    width: 600px;
     height: 30px;
     background: dimgrey;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -326,18 +326,18 @@ li {
 }
 div#home {
     position: relative;
-    left: 390px;
+    left: 270px;
     bottom: 181px;
 }
 
 div#draw {
     position: relative;
-    left: 503px;
+    left: 375px;
     bottom: 214px;
 }
 
 div#away {
     position: relative;
-    left: 603px;
+    left: 482px;
     bottom: 247px;
 }

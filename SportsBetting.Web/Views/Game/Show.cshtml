@@ -21,10 +21,14 @@
 			</ul>
 		</div>
 		<div class="userBetInput">
+			<div>
 			<input name="text" class="BetAmmountInput" pattern="^(\d{1,5}|\d{0,5}\.\d{1,2})$" placeholder="Bet ammount">
+			</div>
+			<div>
 			<button class="MakeABetButton">
 				<span class="MakeABetButton-content">Make a bet</span>
 			</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -88,6 +92,7 @@
 					card.append('<p class="BetDate">' + game.start[5] + game.start[6] + '/' + game.start[8] + game.start[9] +'</p>');
 					card.append('<p class="BetTime">' + game.startFormatted + '</p>');
 					card.append('<button class="remove" value="' + game.id + '">X</button>');
+					card.append('<p class="prediction">' + item.predictionString + '</p>');
 
 					listItem.append(card);
 					oneGamesList.append(listItem);

@@ -100,13 +100,25 @@
 			else if (prediction == 2)
 				multiplier *= gameCardViewModel.AwayOdd;
 
-
 			OneGameBetServiceModel oneGameBetService = new OneGameBetServiceModel()
 			{
 				Game = gameCardViewModel,
 				Multiplier = multiplier,
 				Prediction = prediction,
+
 			};
+			switch (prediction)
+			{
+				case 0: 
+					oneGameBetService.PredictionString = "draw";
+					break;
+				case 1:
+					oneGameBetService.PredictionString = "home";
+					break;
+				case 2:
+					oneGameBetService.PredictionString = "away";
+					break;
+			}
 
 			return oneGameBetService;
 		}

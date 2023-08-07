@@ -30,3 +30,7 @@ header {
     text-emphasis-color: black;
     --bs-white-rgb: darkred;
 }
+.w-100 {
+    background: darkred;
+    border-color: darkred;
+}

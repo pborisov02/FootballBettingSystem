@@ -14,6 +14,7 @@ namespace SportsBettingSystem.Web.Controllers
 			this.leagueService = leagueService;
 		}
         [HttpGet]
+		[Authorize(Roles = "Administrator")]
         public IActionResult Add()
         {
             var leagueFormModel = new LeagueFormModel();
