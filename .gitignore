@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/SportsBettingSystem.Services.Tests/UnitTests/BankServiceTest.cs
