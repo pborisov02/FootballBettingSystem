@@ -30,10 +30,10 @@ namespace SportsBettingSystem.Services
 
 			if(user == null)
 			{
-				throw new InvalidOperationException("There is no user with this Id");
+				throw new InvalidDataException("There is no user with this Id");
 			}
 
-			user.WalletBallance += deposit;
+			user.WalletBalance += deposit;
 			await _db.SaveChangesAsync();
 		}
 
@@ -50,10 +50,10 @@ namespace SportsBettingSystem.Services
 
 			if (user == null)
 			{
-				throw new InvalidOperationException("There is no user with this Id");
+				throw new InvalidDataException("There is no user with this Id");
 			}
 
-			user.WalletBallance -= ammount;
+			user.WalletBalance -= ammount;
 			await _db.SaveChangesAsync();
 		}
 	}

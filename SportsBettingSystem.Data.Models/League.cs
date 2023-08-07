@@ -10,7 +10,7 @@
         public League()
         {
             this.Teams = new HashSet<Team>();
-            this.Games= new HashSet<Game>();
+            this.Games = new HashSet<Game>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -1,10 +1,9 @@
 ﻿namespace SportsBettingSystem.Web.Controllers
 {
-	using System.Security.Claims;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
+	using System.Security.Claims;
 	
-	using SportsBettingSystem.Data.Models;
 	using SportsBettingSystem.Services.Interfaces;
 	using SportsBettingSystem.Web.ViewModels.Bank;
 	[Authorize]
@@ -46,26 +45,26 @@
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Withdraw() 
+		public IActionResult Withdraw() 
 		{
-			ApplicationUser user = await accountService.GetUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
-			WithdrawWalletFundsFormModel model = new WithdrawWalletFundsFormModel();
+			WithdrawWalletFundsFormModel model = new();
 			return this.View(model);
 		}
 
 		[HttpPost]
 		public async Task<IActionResult> Withdraw(WithdrawWalletFundsFormModel model)
 		{
-			ApplicationUser user = await accountService.GetUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
-			if(user.WalletBallance < model.WithdrawAmount || model.WithdrawAmount < 30)
+			Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+			var user = await accountService.AccountInfoAsync(userId);
+			if (user.WalletBalance < model.WithdrawAmount || model.WithdrawAmount < 30)
 			{
 				this.ModelState
-					.AddModelError(string.Empty, $"Cannot withdraw less than 30$ or more than your wallet balance({user.WalletBallance}$)!");
+					.AddModelError(string.Empty, $"Cannot withdraw less than 30$ or more than your wallet balance({user.WalletBalance}$)!");
 				return this.View(model);
 			}
 			try
 			{
-				await bankService.WithdrawAsync(user.Id, model.WithdrawAmount);
+				await bankService.WithdrawAsync(userId, model.WithdrawAmount);
 			}
 			catch (Exception) 
 			{

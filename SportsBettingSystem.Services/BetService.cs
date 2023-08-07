@@ -32,9 +32,9 @@
 		public async Task<bool> CreateBetAsync(List<OneGameBetServiceModel> oneGameBets, decimal ammount, Guid userId)
 		{
 			var user = await _db.Users.FirstAsync(u => u.Id == userId);
-            if (oneGameBets == null || oneGameBets!.Count < 1 || ammount < 2 || user.WalletBallance < ammount)
+            if (oneGameBets == null || oneGameBets!.Count < 1 || ammount < 2 || user.WalletBalance < ammount)
                 return false;
-			user.WalletBallance -= ammount;
+			user.WalletBalance -= ammount;
 			decimal multiplier = 1;
             foreach (var game in oneGameBets)
 			{
@@ -230,7 +230,7 @@
 					{
 						bet.IsWinning = true;
 						decimal winning = bet.Multiplier * bet.BetAmmount;
-						await accountService.UpdateUserWallet(bet.UserId, winning);
+						await accountService.UpdateUserWalletBalance(bet.UserId, winning);
 					}
 					else
 						bet.IsWinning = false;

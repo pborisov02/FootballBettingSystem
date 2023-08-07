@@ -4,8 +4,7 @@
     using SportsBettingSystem.Web.ViewModels.Account;
     public interface IAccountService
     {
-        Task<AccountViewModel> AccountInfo(Guid userId);
-        Task<ApplicationUser> GetUser(string userId);
-        Task UpdateUserWallet(Guid userId, decimal winning);
+        Task<AccountViewModel> AccountInfoAsync(Guid userId);
+        Task UpdateUserWalletBalance(Guid userId, decimal winning);
     }
 }

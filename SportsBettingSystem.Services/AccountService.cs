@@ -25,31 +25,26 @@ namespace SportsBettingSystem.Services
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<AccountViewModel> AccountInfo(Guid userId)
+        public async Task<AccountViewModel> AccountInfoAsync(Guid userId)
         {
 
-            ApplicationUser user = await dbContext.Users.AsNoTracking().FirstAsync(u => u.Id == userId);
+            ApplicationUser? user = await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == userId);
+
+            if(user == null)
+            {
+                throw new InvalidDataException();
+            }
 
             AccountViewModel accountViewModel = new AccountViewModel
             {
                 Name = $"{user.FirstName} {user.LastName}",
                 Email = user.Email,
                 CreatedOn = user.CreatedOn,
-                WalletBalance = user.WalletBallance
+                WalletBalance = user.WalletBalance
             };
 
             return accountViewModel;
         }
-
-        /// <summary>
-        /// Returns the user that matches the given id
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-		public async Task<ApplicationUser> GetUser(string userId)
-		{
-			return await dbContext.Users.AsNoTracking().FirstAsync(u => u.Id == Guid.Parse(userId));
-		}
 
         /// <summary>
         /// Updates the wallet ballance of the user that matches the given id by adding the winning ammount to it's wallet
@@ -57,10 +52,10 @@ namespace SportsBettingSystem.Services
         /// <param name="userId"></param>
         /// <param name="winning"></param>
         /// <returns></returns>
-		public async Task UpdateUserWallet(Guid userId, decimal winning)
+		public async Task UpdateUserWalletBalance(Guid userId, decimal winning)
 		{
             ApplicationUser user = await dbContext.Users.FirstAsync(u => u.Id == userId);
-            user.WalletBallance += winning;
+            user.WalletBalance += winning;
             await dbContext.SaveChangesAsync();
 		}
 	}

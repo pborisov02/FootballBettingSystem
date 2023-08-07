@@ -11,7 +11,7 @@
         {
             this.Bets = new HashSet<Bet>();
         }
-        public decimal WalletBallance { get; set; }
+        public decimal WalletBalance { get; set; }
         [MaxLength(15)]
         public string FirstName { get; set; } = null!;
 		[MaxLength(15)]

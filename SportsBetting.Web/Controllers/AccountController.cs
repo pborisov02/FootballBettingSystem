@@ -27,7 +27,7 @@ namespace SportsBettingSystem.Web.Controllers
         public async Task<IActionResult> Info()
         {
 
-            AccountViewModel accountViewModel = await accountService.AccountInfo(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            AccountViewModel accountViewModel = await accountService.AccountInfoAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             return View(accountViewModel);
         }
