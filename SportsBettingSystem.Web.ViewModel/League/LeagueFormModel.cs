@@ -1,7 +1,7 @@
 ﻿namespace SportsBettingSystem.Web.ViewModels.League
 {
-    using System.ComponentModel.DataAnnotations;
-    using static Common.EntityValidationConstants.League;
+	using System.ComponentModel.DataAnnotations;
+	using static Common.EntityValidationConstants.League;
     public class LeagueFormModel
     {
         [Required]

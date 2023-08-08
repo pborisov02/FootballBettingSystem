@@ -1,16 +1,13 @@
-namespace SportsBetting.Web
+namespace SportsBettingSystem.Web
 {
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.EntityFrameworkCore;
-
 	using SportsBettingSystem.Data;
 	using SportsBettingSystem.Data.Models;
 	using SportsBettingSystem.Services;
 	using SportsBettingSystem.Web.Infrastructure.Extensions;
 	using SportsBettingSystem.Web.Infrastructure.ModelBinders;
-
-
 
 	public class Program
 	{
@@ -93,9 +90,15 @@ namespace SportsBetting.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+	                name: "Areas",
+	                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                
+                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                    pattern: "/{controller=Home}/{action=Index}/{id?}");
+
+
+	            endpoints.MapRazorPages();
             });
 
             app.Run();

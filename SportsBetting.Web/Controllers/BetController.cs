@@ -1,11 +1,13 @@
 ﻿namespace SportsBettingSystem.Web.Controllers
 {
     using System.Security.Claims;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     
-	using SportsBettingSystem.Services.Interfaces;
-    using SportsBettingSystem.Web.ViewModels.Bet;
+    using Services.Interfaces;
+    using ViewModels.Bet;
 
+	[Authorize]
 	public class BetController : Controller
 	{
 		private readonly IBetService betService;
@@ -22,6 +24,7 @@
 		[HttpPost]
 		public async Task<IActionResult> CreateBet(decimal betAmount, List<OneGameBetServiceModel> oneGameBets)
 		{
+            Console.WriteLine(User.FindFirstValue(ClaimTypes.NameIdentifier));
 			Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 			if (await betService.CreateBetAsync(oneGameBets, betAmount, userId))
 				return RedirectToAction("UserBets", "Bet");
@@ -47,7 +50,7 @@
             }
 			catch (Exception)
 			{
-				return View("Error403");
+				return View("Error");
 			}
 		}
 	}

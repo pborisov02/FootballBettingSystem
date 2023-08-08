@@ -6,18 +6,21 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-        <link rel="stylesheet" href="~/css/nav_button_style.css" asp-append-version="true" />
-     <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
-         <div class="dropdown-menu">
-            <a class ="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Info">My account</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Bet" asp-action="UserBets">My bets</a>
-             <div class="dropdown-divider"></div>
-                <p>&nbsp Bank:</p>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Deposit">Deposit</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Withdraw">Withdraw</a>
-        </div>
-     </li>
+	<link rel="stylesheet" href="~/css/nav_button_style.css" asp-append-version="true" />
+	@if (!User.IsInRole("Administrator"))
+	{
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+			<div class="dropdown-menu">
+				<a class ="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Info">My account</a>
+				<a class="nav-link text-dark" asp-area="" asp-controller="Bet" asp-action="UserBets">My bets</a>
+				<div class="dropdown-divider"></div>
+				<p>&nbsp Bank:</p>
+				<a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Deposit">Deposit</a>
+				<a class="nav-link text-dark" asp-area="" asp-controller="Bank" asp-action="Withdraw">Withdraw</a>
+			</div>
+		</li>
+		}
 
     <li class="nav-item">
         <a  class="nav-link text-dark">Hello, @User.FindFirst("FirstName")!.Value</a>

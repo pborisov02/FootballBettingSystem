@@ -1,18 +1,19 @@
 ﻿namespace SportsBettingSystem.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using SportsBettingSystem.Web.ViewModels.Home;
+    using ViewModels.Home;
     using System.Diagnostics;
     public class HomeController : Controller
     {
-        public HomeController()
-        {
-        }
 
         public IActionResult Index()
         {
+	        if (User.IsInRole("Administrator"))
+	        {
+		        return RedirectToAction("Index", "Home", new { area = "Admin" });
+	        }
 
-            return View();
+	        return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
