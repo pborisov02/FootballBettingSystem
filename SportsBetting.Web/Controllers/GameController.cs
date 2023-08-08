@@ -52,7 +52,7 @@
 			}
 			try
 			{
-				await gameService.CreateAsync(model);
+				await gameService.CreateGameAsync(model);
 			}
 			catch (Exception)
 			{
@@ -83,16 +83,16 @@
             GameServiceModel model = new()
             {
                 Date = DateTime.Now,
-                AllGames = await gameService.AllAsync(),
+                AllGames = await gameService.AllGamesAsync(),
                 Leagues = await leagueService.AllLeaguesAsync(),
-                Games = await gameService.FilterByLeagueAndDate(-1, DateTime.UtcNow)
+                Games = await gameService.FilterByLeagueAndDateAsync(-1, DateTime.UtcNow)
             };
             return View(model);
 		}
 		[HttpGet]
 		public async Task<IActionResult> GetGamesByLeagueAndDate(int leagueId, double days)
 		{
-			var filteredGames = await gameService.FilterByLeagueAndDate(leagueId, DateTime.UtcNow.AddDays(days));
+			var filteredGames = await gameService.FilterByLeagueAndDateAsync(leagueId, DateTime.UtcNow.AddDays(days));
 			return Json(filteredGames);
 		}
 
@@ -100,7 +100,7 @@
 		public async Task<IActionResult> ShowGamesForUpdate([FromQuery] GamesForUpdateQueryModel queryModel, int currentPage)
 		{
 			queryModel.CurrentPage = currentPage;
-			queryModel = await gameService.AllForChangesAsync(queryModel);
+			queryModel = await gameService.AllGamesForChangesAsync(queryModel);
 			queryModel.Leagues = await leagueService.AllLeaguesNamesAsync();
 			return View(queryModel);
 		}

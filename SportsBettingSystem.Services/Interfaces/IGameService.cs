@@ -9,10 +9,10 @@ namespace SportsBettingSystem.Services.Interfaces
 {
     public interface IGameService
     {
-        Task CreateAsync(GameFormModel leagueFormModel);
-		Task<IEnumerable<GameViewModel>> AllAsync();
-        Task<IEnumerable<GameViewModel>> FilterByLeagueAndDate(int leagueId, DateTime date);
-        Task<GamesForUpdateQueryModel> AllForChangesAsync(GamesForUpdateQueryModel queryModel);
+        Task CreateGameAsync(GameFormModel leagueFormModel);
+		Task<IEnumerable<GameViewModel>> AllGamesAsync();
+        Task<IEnumerable<GameViewModel>> FilterByLeagueAndDateAsync(int leagueId, DateTime date);
+        Task<GamesForUpdateQueryModel> AllGamesForChangesAsync(GamesForUpdateQueryModel queryModel);
         Task<GameUpdateServiceModel> GetGameForUpdateAsync(Guid gameId);
         Task<bool> UpdateGameAsync(GameUpdateServiceModel gameUpdate);
 	}

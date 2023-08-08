@@ -16,7 +16,7 @@
         {
             _db = db;
         }
-        public async Task CreateAsync(GameFormModel gameFormModel)
+        public async Task CreateGameAsync(GameFormModel gameFormModel)
         {
 			await _db.Games.AddAsync(new Game
 			{
@@ -32,7 +32,7 @@
             await _db.SaveChangesAsync();
         }
 
-		public async Task<IEnumerable<GameViewModel>> AllAsync()
+		public async Task<IEnumerable<GameViewModel>> AllGamesAsync()
 		{
 
             IEnumerable<GameViewModel> games = await _db.Games
@@ -70,9 +70,9 @@
             return games;
 		}
 
-		public async Task<IEnumerable<GameViewModel>> FilterByLeagueAndDate(int leagueId, DateTime date)
+		public async Task<IEnumerable<GameViewModel>> FilterByLeagueAndDateAsync(int leagueId, DateTime date)
 		{
-			IEnumerable<GameViewModel> games = await AllAsync();
+			IEnumerable<GameViewModel> games = await AllGamesAsync();
 			if (leagueId == -1)
 			{
 				games = games.Where(g => g.Start.Date == date.Date).ToList();
@@ -83,7 +83,7 @@
 			return games;
 		}
 
-        public async Task<GamesForUpdateQueryModel> AllForChangesAsync(GamesForUpdateQueryModel queryModel)
+        public async Task<GamesForUpdateQueryModel> AllGamesForChangesAsync(GamesForUpdateQueryModel queryModel)
         {
 			var gamesQuery = _db.Games.AsQueryable();
 
@@ -143,7 +143,9 @@
 
 		public async Task<GameUpdateServiceModel> GetGameForUpdateAsync(Guid gameId)
 		{
-			Game game = await _db.Games.Include(g => g.HomeTeam).Include(g=>g.AwayTeam).Include(g => g.League).FirstAsync(g => g.Id == gameId);
+			Game? game = await _db.Games.Include(g => g.HomeTeam).Include(g=>g.AwayTeam).Include(g => g.League).FirstOrDefaultAsync(g => g.Id == gameId);
+			if (game == null)
+				throw new InvalidDataException();
 			GameUpdateServiceModel gameForUpdate = new()
 			{
 				Id = game.Id,
@@ -178,7 +180,7 @@
 				else if(game.HomeGoals == game.AwayGoals)
 					game.Result = 0;
 				game.isFinished = true;
-				_db.SaveChanges();
+				await _db.SaveChangesAsync();
 				return true;
 			}
 			return false;

@@ -26,7 +26,7 @@
 		[HttpPost]
 		public async Task<IActionResult> Add(TeamFormModel model)
 		{
-			if (!await _teamService.LeagueExists(model.LeagueId))
+			if (!await _teamService.LeagueExistsAsync(model.LeagueId))
 			{
 				this.ModelState.AddModelError(nameof(model.LeagueId), "League does not exist");
 			}
@@ -36,7 +36,7 @@
 				return this.View(model);
 			}
 
-			await _teamService.CreateTeam(model);
+			await _teamService.CreateTeamAsync(model);
 
 			return this.RedirectToAction("Index", "Home");
 		}

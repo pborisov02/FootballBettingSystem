@@ -26,15 +26,15 @@
 		/// Creates a bet and saves it in the database
 		/// </summary>
 		/// <param name="oneGameBets"></param>
-		/// <param name="ammount"></param>
+		/// <param name="amount"></param>
 		/// <param name="userId"></param>
 		/// <returns></returns>
-		public async Task<bool> CreateBetAsync(List<OneGameBetServiceModel> oneGameBets, decimal ammount, Guid userId)
+		public async Task<bool> CreateBetAsync(List<OneGameBetServiceModel> oneGameBets, decimal amount, Guid userId)
 		{
-			var user = await _db.Users.FirstAsync(u => u.Id == userId);
-            if (oneGameBets == null || oneGameBets!.Count < 1 || ammount < 2 || user.WalletBalance < ammount)
+			var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (oneGameBets.Count == 0 || oneGameBets!.Count < 1 || amount < 2 || user.WalletBalance < amount || user == null)
                 return false;
-			user.WalletBalance -= ammount;
+			user.WalletBalance -= amount;
 			decimal multiplier = 1;
             foreach (var game in oneGameBets)
 			{
@@ -42,7 +42,7 @@
 			}
 			Bet bet = new()
 			{
-				BetAmmount = ammount,
+				BetAmmount = amount,
 				Multiplier = multiplier,
 				UserId = userId
 			};
@@ -217,9 +217,10 @@
 		/// <returns></returns>
 		public async Task UpdateBetsAsync(Guid gameId)
 		{
-			var bets = await _db.Bets.Where(b => b.GameBets.Any(gb => gb.GameId == gameId)
-			&& b.GameBets.All(gb => gb.Game.isFinished) 
-			&& !b.IsDone)
+			var bets = await _db.Bets.Where(b => 
+					b.GameBets.Any(gb => gb.GameId == gameId)
+				&& b.GameBets.All(gb => gb.Game.isFinished) 
+				&& !b.IsDone)
 			.ToListAsync();
 			if (bets != null)
 			{

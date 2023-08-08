@@ -16,7 +16,7 @@
 			this._db = dbContext;
 		}
 
-		public async Task CreateTeam(TeamFormModel model)
+		public async Task CreateTeamAsync(TeamFormModel model)
 		{
 			var team = new Team()
 			{
@@ -28,7 +28,7 @@
 			await _db.SaveChangesAsync();
 		}
 
-		public async Task<bool> LeagueExists(int leagueId)
+		public async Task<bool> LeagueExistsAsync(int leagueId)
 		{
 			return await _db.Leagues.AnyAsync(l => l.Id == leagueId);
 		}

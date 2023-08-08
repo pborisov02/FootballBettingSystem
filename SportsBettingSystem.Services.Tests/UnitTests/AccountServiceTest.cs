@@ -1,5 +1,4 @@
-﻿
-namespace SportsBettingSystem.Services.Tests.UnitTests
+﻿namespace SportsBettingSystem.Services.Tests.UnitTests
 {
 	using Microsoft.EntityFrameworkCore;
 	using Data;
@@ -48,6 +47,7 @@ namespace SportsBettingSystem.Services.Tests.UnitTests
 		}
 
 		[Test]
+	
 		public void UpdateUserWalletBalanceShouldAddTheWinningsToTheUserWallet()
 		{
 			//When seeding the database we give the user wallet balance - 0$

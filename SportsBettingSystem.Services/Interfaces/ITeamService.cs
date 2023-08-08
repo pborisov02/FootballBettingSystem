@@ -4,7 +4,7 @@
 
 	public interface ITeamService
 	{
-		Task CreateTeam(TeamFormModel model);
-		Task<bool> LeagueExists(int leagueId);
+		Task CreateTeamAsync(TeamFormModel model);
+		Task<bool> LeagueExistsAsync(int leagueId);
 	}
 }

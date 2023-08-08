@@ -22,7 +22,7 @@
 		</div>
 		<div class="userBetInput">
 			<div>
-			<input name="text" class="BetAmmountInput" pattern="^(\d{1,5}|\d{0,5}\.\d{1,2})$" placeholder="Bet ammount">
+			<input name="text" class="BetAmmountInput" pattern="^(\d{1,5}|\d{0,5}\.\d{1,2})$" placeholder="Bet amount">
 			</div>
 			<div>
 			<button class="MakeABetButton">
@@ -184,7 +184,7 @@
 				var betAmount = $('.BetAmmountInput').val();
 				var betAmountAsDec = parseFloat(betAmount)
 				if (!isValidBetAmount(betAmount) || betAmountAsDec<2.00 ) {
-					alert('Invalid bet amount. The bet ammount should be a number bigger than 2.00!.');
+					alert('Invalid bet amount. The bet amount should be a number bigger than 2.00!.');
 					return; 
 				}
 				if(modelData.length < 1)
