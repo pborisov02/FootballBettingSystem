@@ -25,11 +25,11 @@ namespace SportsBettingSystem.Web
 				.AddDefaultIdentity<ApplicationUser>(options =>
 				{
 					options.SignIn.RequireConfirmedAccount = false;
-					options.Password.RequireDigit = false;
-					options.Password.RequireLowercase = false;
-					options.Password.RequireUppercase = false;
+					options.Password.RequireDigit = true;
+					options.Password.RequireLowercase = true;
+					options.Password.RequireUppercase = true;
 					options.Password.RequireNonAlphanumeric = false;
-					options.Password.RequiredLength = 1;
+					options.Password.RequiredLength = 8;
 				})
 				.AddRoles<IdentityRole<Guid>>()
 				.AddEntityFrameworkStores<SportsBettingDbContext>();

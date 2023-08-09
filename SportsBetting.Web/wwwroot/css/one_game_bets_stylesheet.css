@@ -129,7 +129,7 @@
     color: #000000;
     position: relative;
     left: 12px;
-    bottom: 171px;
+    bottom: 170px;
     font-size: 24px;
     font-weight: bolder;
 }
@@ -146,7 +146,7 @@
 .BetTime {
     color: #000000;
     position: relative;
-    left: 100px;
+    left: 134px;
     bottom: 326px;
     font-size: 24px;
     font-weight: bolder;
@@ -154,21 +154,23 @@
 .BetDate {
     color: #000000;
     position: relative;
-    left: 100px;
-    bottom: 297px;
+    left: 54px;
+    bottom: 274px;
     font-size: 24px;
     font-weight: bolder;
 }
 .prediction {
     position: relative;
-    bottom: 393px;
-    left: 100px;
+    bottom: 418px;
+    left: 208px;
     font-size: 22px;
     font-weight: bolder;
 }
+}
 
-.layoutContainer {
+div.layoutContainer {
     display: flex;
+    justify-content: center;
 }
 .remove {
     color: black;

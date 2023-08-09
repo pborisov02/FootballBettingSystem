@@ -12,8 +12,7 @@
         private readonly ILeagueService leagueService;
         private readonly IGameService gameService;
 
-        public GameController(SportsBettingDbContext dbContext, IGameService gameService, ILeagueService leagueService,
-            IBetService betService)
+        public GameController(IGameService gameService, ILeagueService leagueService)
         {
             this.gameService = gameService;
             this.leagueService = leagueService;

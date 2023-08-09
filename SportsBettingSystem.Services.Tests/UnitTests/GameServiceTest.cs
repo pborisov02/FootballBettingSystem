@@ -1,12 +1,13 @@
-﻿namespace SportsBettingSystem.Services.Tests.UnitTests
+﻿namespace SportsBettingSystem.Tests.UnitTests
 {
 	using Microsoft.EntityFrameworkCore;
-	using Data;
-	using Data.Models;
-	using Interfaces;
-	using Web.ViewModels.Game;
-	using Web.ViewModels.League;
-	using Web.ViewModels.Team;
+	using Services;
+	using SportsBettingSystem.Data;
+	using SportsBettingSystem.Data.Models;
+	using SportsBettingSystem.Services.Interfaces;
+	using SportsBettingSystem.Web.ViewModels.Game;
+	using SportsBettingSystem.Web.ViewModels.League;
+	using SportsBettingSystem.Web.ViewModels.Team;
 	using static DBSeeder;
 	public class GameServiceTest
 	{

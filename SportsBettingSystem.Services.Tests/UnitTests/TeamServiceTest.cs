@@ -1,11 +1,12 @@
 ﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-namespace SportsBettingSystem.Services.Tests.UnitTests
+namespace SportsBettingSystem.Tests.UnitTests
 {
 	using Microsoft.EntityFrameworkCore;
-	using Data;
-	using Interfaces;
-	using Web.ViewModels.League;
-	using Web.ViewModels.Team;
+	using Services;
+	using SportsBettingSystem.Data;
+	using SportsBettingSystem.Services.Interfaces;
+	using SportsBettingSystem.Web.ViewModels.League;
+	using SportsBettingSystem.Web.ViewModels.Team;
 	using static DBSeeder;
 	public class TeamServiceTest
 	{

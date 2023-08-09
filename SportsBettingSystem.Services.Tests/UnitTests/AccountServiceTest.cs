@@ -1,9 +1,9 @@
-﻿namespace SportsBettingSystem.Services.Tests.UnitTests
+﻿namespace SportsBettingSystem.Tests.UnitTests
 {
 	using Microsoft.EntityFrameworkCore;
-	using Data;
-	using Interfaces;
-
+	using Services;
+	using SportsBettingSystem.Data;
+	using SportsBettingSystem.Services.Interfaces;
 	using static DBSeeder;
 	public class AccountServiceTest
 	{

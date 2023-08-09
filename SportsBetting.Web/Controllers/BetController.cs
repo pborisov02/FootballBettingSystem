@@ -50,7 +50,7 @@
             }
 			catch (Exception)
 			{
-				return View("Error");
+				return RedirectToAction("Error","Home", 401);
 			}
 		}
 	}

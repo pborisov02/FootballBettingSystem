@@ -1,8 +1,9 @@
 ﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-namespace SportsBettingSystem.Services.Tests.UnitTests
+namespace SportsBettingSystem.Tests.UnitTests
 {
-	using Data;
-	using Data.Models;
+	using SportsBettingSystem.Data;
+	using SportsBettingSystem.Data.Models;
+
 	public class DBSeeder
 	{
 		public static ApplicationUser User;

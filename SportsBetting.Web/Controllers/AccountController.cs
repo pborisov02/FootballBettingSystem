@@ -61,7 +61,6 @@ namespace SportsBettingSystem.Web.Controllers
             IdentityResult result =
                 await userManager.CreateAsync(user, model.Password);
 
-            await userManager.AddClaimAsync(user, new Claim("FirstName", model.FirstName));
            
             if (!result.Succeeded)
             {
@@ -73,8 +72,11 @@ namespace SportsBettingSystem.Web.Controllers
                 return View(model);
             }
 
+            await userManager.AddClaimAsync(user, new Claim("FirstName", model.FirstName));
+            
             await signInManager.SignInAsync(user, false);
 
+            
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]

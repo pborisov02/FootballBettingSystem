@@ -107,12 +107,15 @@
 			{
 				gamesQuery = gamesQuery.Where(g => g.Start.Date <= queryModel.To.Value.Date);
 			}
-			if(queryModel.To.HasValue && queryModel.From.HasValue)
+
+			if (queryModel.To.HasValue && queryModel.From.HasValue)
 			{
-				gamesQuery = gamesQuery.Where(g => 
-				g.Start.Date <= queryModel.To.Value.Date
-				&& g.Start.Date >= queryModel.From.Value.Date);
+				gamesQuery = gamesQuery.Where(g =>
+					g.Start.Date <= queryModel.To.Value.Date
+					&& g.Start.Date >= queryModel.From.Value.Date);
 			}
+
+			gamesQuery = gamesQuery.Where(g => g.Start < DateTime.UtcNow);
 
 			if(queryModel.CurrentPage < 1)
 				queryModel.CurrentPage = 1;

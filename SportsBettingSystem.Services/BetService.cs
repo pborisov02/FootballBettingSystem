@@ -164,7 +164,9 @@
 					Prediction = gb.Prediction,
 					HomeOdd = gb.Game.HomeOdd,
 					DrawOdd = gb.Game.DrawOdd,
-					AwayOdd = gb.Game.AwayOdd
+					AwayOdd = gb.Game.AwayOdd,
+					isFinished = gb.Game.isFinished,
+					Result = gb.Game.Result,
 				})
 			})
 			.FirstOrDefaultAsync();

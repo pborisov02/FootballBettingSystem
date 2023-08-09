@@ -23,11 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Service
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{71E85578-988E-4723-A9DE-B6975B232A74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBettingSystem.Web.CustomAttributes", "SportsBettingSystem.Web.CustomAttributes\SportsBettingSystem.Web.CustomAttributes.csproj", "{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Web.CustomAttributes", "SportsBettingSystem.Web.CustomAttributes\SportsBettingSystem.Web.CustomAttributes.csproj", "{D35FF5B5-024D-4BD4-ADF3-23615E9FE8E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{21281D67-8E31-430D-8BF9-B21C2CDBAE20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBettingSystem.Services.Tests", "SportsBettingSystem.Services.Tests\SportsBettingSystem.Services.Tests.csproj", "{A6F0E2F7-4B2A-45D6-86BE-FC4AAFAF560D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsBettingSystem.Tests", "SportsBettingSystem.Services.Tests\SportsBettingSystem.Tests.csproj", "{A6F0E2F7-4B2A-45D6-86BE-FC4AAFAF560D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SportsBetting.Web\SportsBettingSystem.Web.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Data.Models\SportsBettingSystem.Data.Models.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Data\SportsBettingSystem.Data.csproj" />
     <ProjectReference Include="..\SportsBettingSystem.Services\SportsBettingSystem.Services.csproj" />
