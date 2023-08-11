@@ -33,6 +33,3 @@ Microsoft SQL Server
 
 Pre-App Launch Setup
 Before you start using your app, do a quick setup. Apply migrations to set up the database structure and add initial data, including an admin user. To begin your app, just press Ctrl + F5 in Visual Studio and it will open in your browser for easy access.
-
-Learn More About ASP.NET Core MVC
-You can learn more in the Create ASP.NET Core MVC App documentation.
