@@ -1,5 +1,6 @@
 # FootballBettingSystem
-About The Project - Non-technical Description
+About The Project
+Non-technical Description
 Are you a football enthusiast with a knack for predicting game outcomes? Look no further! SoftBet is your go-to online platform for an immersive and thrilling football betting experience.
 Immerse Yourself in the Game: With SoftBet, you're not just a spectator; you're part of the action. Our user-friendly website brings the excitement of football matches right to your screen. Get ready to dive into the world of goals and wins.
 
