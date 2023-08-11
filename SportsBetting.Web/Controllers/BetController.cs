@@ -6,6 +6,8 @@
     
     using Services.Interfaces;
     using ViewModels.Bet;
+    
+    using static Common.NotificationMessagesConstants;
 
 	[Authorize]
 	public class BetController : Controller
@@ -27,7 +29,9 @@
             Console.WriteLine(User.FindFirstValue(ClaimTypes.NameIdentifier));
 			Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 			if (await betService.CreateBetAsync(oneGameBets, betAmount, userId))
+			{
 				return RedirectToAction("UserBets", "Bet");
+			}
 			else
 				return Json(0);
 

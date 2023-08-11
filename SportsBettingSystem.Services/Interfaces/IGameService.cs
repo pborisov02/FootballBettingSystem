@@ -15,6 +15,7 @@ namespace SportsBettingSystem.Services.Interfaces
         Task<GamesForUpdateQueryModel> AllGamesForChangesAsync(GamesForUpdateQueryModel queryModel);
         Task<GameUpdateServiceModel> GetGameForUpdateAsync(Guid gameId);
         Task<bool> UpdateGameAsync(GameUpdateServiceModel gameUpdate);
+        Task DeleteGame(Guid gameId);
 	}
     
 }

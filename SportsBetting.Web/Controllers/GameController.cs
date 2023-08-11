@@ -35,6 +35,8 @@
         [HttpGet]
         public async Task<IActionResult> GetGamesByLeagueAndDate(int leagueId, double days)
         {
+	        if (days > 6)
+		        return Json(0);
             var filteredGames = await gameService.FilterByLeagueAndDateAsync(leagueId, DateTime.UtcNow.AddDays(days));
             return Json(filteredGames);
         }

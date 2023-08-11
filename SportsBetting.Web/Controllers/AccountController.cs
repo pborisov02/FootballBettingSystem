@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SportsBettingSystem.Services;
-using SportsBettingSystem.Web.ViewModels.Account;
-using Microsoft.Extensions.Identity;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-using SportsBettingSystem.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
-using SportsBettingSystem.Data.Models;
-using Microsoft.AspNetCore.Authentication;
-using Griesoft.AspNetCore.ReCaptcha;
-
-namespace SportsBettingSystem.Web.Controllers
+﻿namespace SportsBettingSystem.Web.Controllers
 {
-    [Authorize]
+    using Griesoft.AspNetCore.ReCaptcha;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Security.Claims;
+    
+    using Data.Models;
+    using Services.Interfaces;
+    using ViewModels.Account;
+	using static Common.NotificationMessagesConstants;
+	[Authorize]
     public class AccountController : Controller
     {
 		private readonly SignInManager<ApplicationUser> signInManager;
@@ -76,7 +75,7 @@ namespace SportsBettingSystem.Web.Controllers
             
             await signInManager.SignInAsync(user, false);
 
-            
+            TempData[SuccessMessage] = $"Welcome {model.FirstName}";
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
@@ -112,8 +111,8 @@ namespace SportsBettingSystem.Web.Controllers
 
                 return View(model);
             }
-
-            return Redirect(model.ReturnUrl ?? "/Home/Index");
+            TempData[SuccessMessage] = "Welcome back!";
+			return Redirect(model.ReturnUrl ?? "/Home/Index");
         }
     }
 }

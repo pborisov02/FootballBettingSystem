@@ -8,6 +8,17 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to SoftBet</h1>
-    <p>The best site for football bets!</p>
+	<p class="lead">
+		If you're not logged in, don't worry, you still can see the games.
+	
+	<p class="lead">
+		However, if you log in, you gain the privilege to be able to make bets on the games of your choice.
+	</p>
+	@if (!this.User.Identity?.IsAuthenticated ?? false)
+	{
+		<p class="lead">
+			<a href="/Identity/Account/Register">Join</a> the best site for football bets! And don't forget gambling is only for fun and <p style="color:red;font-size:1.25rem;">it is not a way to generate additional income!</p>
+		</p>
+	}
 </div>
 

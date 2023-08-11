@@ -1,4 +1,7 @@
-﻿@model GameServiceModel;
+﻿@using SportsBettingSystem.Data.Models
+@using Microsoft.AspNetCore.Identity
+@model GameServiceModel;
+@inject SignInManager<ApplicationUser> SignInManager
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
 	ViewBag.Title = "Games";
@@ -25,9 +28,18 @@
 			<input name="text" class="BetAmmountInput" pattern="^(\d{1,5}|\d{0,5}\.\d{1,2})$" placeholder="Bet amount">
 			</div>
 			<div>
-			<button class="MakeABetButton">
-				<span class="MakeABetButton-content">Make a bet</span>
-			</button>
+				@if (SignInManager.IsSignedIn(User))
+				{
+					<button class="MakeABetButton">
+						<span class="MakeABetButton-content">Make a bet</span>
+					</button>
+				}
+				else
+				{
+					<button class="login">
+						<a class="MakeABetButton-content text-dark" asp-controller="Account" asp-action="Login">Make a bet</a>
+					</button>
+				}
 			</div>
 		</div>
 	</div>
@@ -184,12 +196,12 @@
 				var betAmount = $('.BetAmmountInput').val();
 				var betAmountAsDec = parseFloat(betAmount)
 				if (!isValidBetAmount(betAmount) || betAmountAsDec<2.00 ) {
-					alert('Invalid bet amount. The bet amount should be a number bigger than 2.00!.');
+					toastr.error('Invalid bet amount. The bet amount should be a number bigger than 2.00!.');
 					return; 
 				}
 				if(modelData.length < 1)
 				{
-					alert('Error! You have to select a game before making a bet!');
+					toastr.error('Error! You have to select a game before making a bet!');
 					return;
 				}
 
@@ -205,8 +217,9 @@
 					},
 					success: function (data) {
 						 if (data == 0) {
-							alert("There was a problem creating your bet, please check if the selected games and the bet amount are valid.");
+							toastr.error("There was a problem creating your bet, please check if you have enough money to make that bet");
 						} else {
+							toastr.success("Successfully created the bet")
 							window.location.href = '/Bet/UserBets';
     }
 					},

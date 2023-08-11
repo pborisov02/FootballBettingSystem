@@ -1,0 +1,79 @@
+﻿.prediction {
+    position: relative;
+    left: 356px;
+    bottom: 158px;
+}
+
+.predictionTxt {
+    position: relative;
+    left: 329px;
+    bottom: 142px;
+}
+
+.homeGoals {
+    position: relative;
+    left: 39px;
+    bottom: 245px;
+}
+
+.awayGoals {
+    position: relative;
+    left: 123px;
+    bottom: 198px;
+}
+
+.homeTeam {
+    position: relative;
+    left: 10px;
+    top: -9px;
+}
+
+.vs {
+    position: relative;
+    left: 76px;
+    bottom: 67px;
+}
+
+.awayTeam {
+    position: relative;
+    left: 10px;
+    top: 5px;
+}
+
+.betCard {
+    width: 500px;
+    height: 100px;
+    border-radius: 16px;
+    padding: 5px;
+}
+
+#win {
+    background: green;
+}
+
+#lose {
+    background: darkred;
+}
+#notf{
+    background: black;
+}
+
+.betCard__content {
+    background: dimgray;
+    border-radius: 17px;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+}

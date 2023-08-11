@@ -1,9 +1,7 @@
 ﻿namespace SportsBettingSystem.Web.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using ViewModels.Home;
-    using System.Diagnostics;
-    public class HomeController : Controller
+	using Microsoft.AspNetCore.Mvc;
+	public class HomeController : Controller
     {
 
         public IActionResult Index()
@@ -19,14 +17,13 @@
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error(int statusCode)
 		{
-			if (statusCode == 400 || statusCode == 404)
+			if (statusCode == 400)
 			{
-				return View();
+				return View("Error400");
 			}
-
 			if (statusCode == 401)
 			{
-				return View();
+				return View("Error401");
 			}
 
 			return View();

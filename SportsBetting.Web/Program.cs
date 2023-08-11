@@ -57,6 +57,7 @@ namespace SportsBettingSystem.Web
 			builder.Services.ConfigureApplicationCookie(options =>
 			{
 				options.LoginPath = "/Account/Login";
+				options.AccessDeniedPath = "/Home/Error/401";
 				options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 				options.Cookie.SameSite = SameSiteMode.None; 
 			});
@@ -72,7 +73,8 @@ namespace SportsBettingSystem.Web
 			}
 			else
 			{
-				app.UseExceptionHandler("/Home/Error");
+				app.UseExceptionHandler("/Home/Error/500");
+				app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
 				
 				app.UseHsts();
 			}

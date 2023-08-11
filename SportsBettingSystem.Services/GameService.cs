@@ -85,7 +85,7 @@
 
         public async Task<GamesForUpdateQueryModel> AllGamesForChangesAsync(GamesForUpdateQueryModel queryModel)
         {
-			var gamesQuery = _db.Games.AsQueryable();
+			var gamesQuery = _db.Games.Where(g => !g.isFinished).AsQueryable();
 
 			if(!String.IsNullOrWhiteSpace(queryModel.League))
 			{
@@ -115,7 +115,7 @@
 					&& g.Start.Date >= queryModel.From.Value.Date);
 			}
 
-			gamesQuery = gamesQuery.Where(g => g.Start < DateTime.UtcNow);
+			//gamesQuery = gamesQuery.Where(g => g.Start.Date < DateTime.UtcNow.AddDays(1).Date);
 
 			if(queryModel.CurrentPage < 1)
 				queryModel.CurrentPage = 1;
@@ -188,5 +188,16 @@
 			}
 			return false;
 		}
-	}
+
+		public async Task DeleteGame(Guid gameId)
+		{
+			Game? game = await _db.Games.FirstOrDefaultAsync(g => g.Id == gameId);
+
+			if(game == null)
+				return;
+
+			_db.Games.Remove(game);
+			await _db.SaveChangesAsync();
+		}
+    }
 }

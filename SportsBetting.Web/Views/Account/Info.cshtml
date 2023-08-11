@@ -1,9 +1,9 @@
 ﻿@using SportsBettingSystem.Web.ViewModels.Account;
 @model AccountViewModel
-
+<link rel="stylesheet" href="~/css/account_info_stylesheet.css" asp-append-version="true" />
 <div >
- <p class="title">Name: @Model.Name</p>
- <p>Email: @Model.Email</p>
+	<p class="title">Name: @Model.Name</p>
+	<p>Email: @Model.Email</p>
 	<p>Joined: @Model.CreatedOn.Year/@Model.CreatedOn.Month/@Model.CreatedOn.Day</p>
- <p class="title">Wallet ballance: @Model.WalletBalance</p> 
+	<p class="title">Wallet balance: @Model.WalletBalance</p> 
 </div>

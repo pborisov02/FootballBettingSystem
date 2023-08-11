@@ -4,8 +4,10 @@
 	using Microsoft.AspNetCore.Mvc;
 	using System.Security.Claims;
 	
-	using SportsBettingSystem.Services.Interfaces;
-	using SportsBettingSystem.Web.ViewModels.Bank;
+	using Services.Interfaces;
+	using ViewModels.Bank;
+
+	using static Common.NotificationMessagesConstants;
 	[Authorize]
 	public class BankController : Controller
 	{
@@ -41,6 +43,8 @@
 					.AddModelError(string.Empty, "Unexpected error occurred! Please try again later or contact administrator!");
 				return this.View(model);
 			}
+
+			TempData[SuccessMessage] = "Funds were successfully deposited!";
 			return this.RedirectToAction("Info", "Account");
 		}
 
@@ -72,6 +76,7 @@
 					.AddModelError(string.Empty, "Unexpected error occurred! Please try again later or contact administrator!");
 				return this.View(model);
 			}
+			TempData[SuccessMessage] = "Funds were successfully withdrawn!";
 			return this.RedirectToAction("Info","Account");
 		}
 	}

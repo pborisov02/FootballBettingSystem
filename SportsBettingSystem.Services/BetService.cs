@@ -160,6 +160,8 @@
 						Id = gb.Game.AwayTeam.Id,
 						Name = gb.Game.AwayTeam.Name
 					},
+					HomeGoals = gb.Game.HomeGoals,
+					AwayGoals = gb.Game.AwayGoals,
 					Start = gb.Game.Start,
 					Prediction = gb.Prediction,
 					HomeOdd = gb.Game.HomeOdd,
@@ -223,22 +225,22 @@
 					b.GameBets.Any(gb => gb.GameId == gameId)
 				&& b.GameBets.All(gb => gb.Game.isFinished) 
 				&& !b.IsDone)
+				.Include(b => b.GameBets)
 			.ToListAsync();
-			if (bets != null)
+			
+			foreach (var bet in bets)
 			{
-				foreach (var bet in bets)
+				bet.IsDone = true;
+				if (bet.GameBets.All(gb => gb.IsWinning))
 				{
-                    bet.IsDone = true;
-					if (bet.GameBets.All(gb => gb.IsWinning))
-					{
-						bet.IsWinning = true;
-						decimal winning = bet.Multiplier * bet.BetAmmount;
-						await accountService.UpdateUserWalletBalance(bet.UserId, winning);
-					}
-					else
-						bet.IsWinning = false;
+					bet.IsWinning = true;
+					decimal winning = bet.Multiplier * bet.BetAmmount;
+					await accountService.UpdateUserWalletBalance(bet.UserId, winning);
 				}
+				else
+					bet.IsWinning = false;
 			}
+			
 		}
 	}
 }

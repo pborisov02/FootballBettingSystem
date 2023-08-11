@@ -131,7 +131,7 @@
 
 			gamesForUpdateQueryModel = await gameService.AllGamesForChangesAsync(gamesForUpdateQueryModel);
 
-			Assert.True(gamesForUpdateQueryModel.GamesForUpdate.Count() == dbContext.Games.Where(g => g.League.Name == "SoftBet").ToList().Count());
+			Assert.True(gamesForUpdateQueryModel.GamesForUpdate.Count() == dbContext.Games.Where(g => g.League.Name == "SoftBet" && !g.isFinished).ToList().Count());
 		}
 		[Test]
 		public async Task AllGamesForChangesAsyncShouldReturnEveryGameWithGivenSearchTermForFilter()
@@ -143,7 +143,7 @@
 
 			gamesForUpdateQueryModel = await gameService.AllGamesForChangesAsync(gamesForUpdateQueryModel);
 
-			Assert.True(gamesForUpdateQueryModel.GamesForUpdate.Count() == dbContext.Games.Where(g => g.HomeTeam.Name == "Litex FC" || g.AwayTeam.Name == "Litex FC" ).ToList().Count());
+			Assert.True(gamesForUpdateQueryModel.GamesForUpdate.Count() == dbContext.Games.Where(g => (g.HomeTeam.Name == "Litex FC" || g.AwayTeam.Name == "Litex FC") && !g.isFinished).ToList().Count());
 		}
 		[Test]
 		public async Task AllGamesForChangesAsyncShouldReturnEveryGameWithGivenDatesForFilter()
@@ -187,7 +187,7 @@
 			gamesForUpdateQueryModel = await gameService.AllGamesForChangesAsync(gamesForUpdateQueryModel);
 
 			List<Game> gamesToCheck = dbContext.Games
-				.Where(g => g.Start.Date <= DBSeeder.Game.Start.AddDays(1))
+				.Where(g => g.Start.Date <= DBSeeder.Game.Start.AddDays(1) && !g.isFinished)
 				.ToList();
 			Assert.True(gamesForUpdateQueryModel.GamesForUpdate.Count() == gamesToCheck.Count());
 		}

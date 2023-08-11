@@ -1,13 +1,7 @@
-﻿using SportsBettingSystem.Web.ViewModels.League;
-using SportsBettingSystem.Web.ViewModels.Team;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SportsBettingSystem.Web.ViewModels.Game
+﻿namespace SportsBettingSystem.Web.ViewModels.Game
 {
+	using Team;
+	using League;
 	public class Game_BetViewModel
 	{
 		public decimal HomeOdd { get; set; }
@@ -17,7 +11,6 @@ namespace SportsBettingSystem.Web.ViewModels.Game
 		public TeamServiceModel AwayTeam { get; set; } = null!;
 		public LeagueServiceModel League { get; set; } = null!;
 		public bool isFinished { get; set; }
-
 		public int HomeGoals { get; set; }
 		public int AwayGoals { get; set; }
 		public int Result { get; set; }
