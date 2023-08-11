@@ -9,6 +9,7 @@ Immerse Yourself in the Game: With SoftBet, you're not just a spectator; you're 
 This project was created by Petar Borisov for the purposes of ASP.NET Advanced Softuni Course, July 2023.
 
 Public part
+
 This part of the platform is designed for non-registered users. These users have access to the following:
 
 Home page -> The central hub of the application, offering users a comprehensive overview and access to essential information about the platform's functionalities and offerings.
@@ -20,10 +21,17 @@ Login-> A page where the login form for already registered users is located.
 Register-> A page where the register form for non-users is located.
 
 Private part
+
+This part of the platform is designed for registered users. These users have access to the following:
+
 My account -> A page with information for the login user.
+
 Deposit -> A page where the users can deposit funds to their wallet.
+
 Withdraw -> A page where the users can withdraw funds from their wallet.
+
 My bets -> A page where the users can see their bets, and check if they are winning or not.
+
 Bet creation -> A page with all games that users can make bets on.
 
 Admin part
